@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedMaterialModule } from './shared-material/shared-material.module';
-import { MatIconModule, MatButtonModule, MatButtonToggleModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatButtonToggleModule, MatRippleModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -19,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     SharedMaterialModule,
     MatIconModule,
     MatButtonModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
