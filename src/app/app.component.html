@@ -156,7 +156,14 @@
 
 <h2>漣漪效果(mat-ripple)</h2>
 
-<div class="demo-ripple-container" mat-ripple>
+<div class="demo-ripple-container" mat-ripple
+[matRippleCentered]="false"
+[matRippleDisabled]="false"
+[matRippleUnbounded]="false"
+[matRippleRadius]="10"
+[matRippleColor]="'pink'"
+[matRippleSpeedFactor]="0.5"></div>
 
-</div>
+<button mat-raised-button (click)="triggerRipple()">觸發漣漪效果</button>
+<button mat-raised-button (click)="clearRipple()">清除漣漪效果</button>
 <router-outlet></router-outlet>
