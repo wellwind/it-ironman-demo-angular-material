@@ -1,0 +1,23 @@
+<mat-toolbar>我是Toolbar</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sideNav mode="over" (opened)="opened()" (closed)="closed()" fixedInViewport="true" fixedTopGap="20" fixedBottomGap="20">
+    <div>我是左邊選單</div>
+    <div>
+      <button mat-raised-button color="warn" (click)="toggleSideNav(sideNav)">切換選單狀態</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav #sideNavEnd opened="true" mode="side" position="end">
+    <div>我是右邊選單</div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button mat-raised-button (click)="toggleSideNav(sideNav)">切換選單狀態</button>
+
+    <mat-drawer-container style="height:100px;margin:10px;border: 1px solid black">
+      <mat-drawer mode="side" opened="true">Drawer Side</mat-drawer>
+      <mat-drawer-content>Content</mat-drawer-content>
+    </mat-drawer-container>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

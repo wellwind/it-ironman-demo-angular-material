@@ -1,0 +1,7 @@
+.demo-ripple-container {
+  height: 150px;
+  width: 200px;
+  position: relative;
+  transition: all 200ms linear;
+  border: 1px solid black;
+}
