@@ -116,4 +116,42 @@
   </button>
 </div>
 
+<h2>按鈕開關</h2>
+<mat-button-toggle>我是個開關</mat-button-toggle>
+
+<h2>按鈕開關群組</h2>
+<mat-button-toggle-group #formatAlignGroup="matButtonToggleGroup">
+  <!-- button toogle所代表的值 -->
+  <mat-button-toggle value="left">
+    <mat-icon>format_align_left</mat-icon>
+  </mat-button-toggle>
+  <!-- 預設被選取 -->
+  <mat-button-toggle value="center" checked="true">
+    <mat-icon>format_align_center</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="right">
+    <mat-icon>format_align_right</mat-icon>
+  </mat-button-toggle>
+  <!-- 不允許選擇的button toggle -->
+  <mat-button-toggle value="justify" disabled>
+    <mat-icon>format_align_justify</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
+<div>對齊方式為：{{ formatAlignGroup.value }}</div>
+
+<!-- 加上multiple，則裡面的mat-buttong-toggle可以複選 -->
+<!-- 加上vertical="true", 改變排列方式 -->
+<mat-button-toggle-group multiple vertical="true" #formatTextGroup="matButtonToggleGroup">
+  <mat-button-toggle value="bold" #buttonToggleBold>
+    <mat-icon>format_bold</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="italic" checked="true" #buttonToggleItalic>
+    <mat-icon>format_italic</mat-icon>
+  </mat-button-toggle>
+  <mat-button-toggle value="underlined" checked="true" #buttonToggleUnderlined>
+    <mat-icon>format_underlined</mat-icon>
+  </mat-button-toggle>
+</mat-button-toggle-group>
+<div>粗體：{{ buttonToggleBold.checked }}、斜體：{{ buttonToggleItalic.checked }}、底線：{{ buttonToggleUnderlined.checked }}</div>
+
 <router-outlet></router-outlet>
