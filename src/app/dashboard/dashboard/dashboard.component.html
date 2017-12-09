@@ -6,6 +6,10 @@
     </div>
   </mat-sidenav>
 
+  <mat-sidenav #sideNavEnd opened="true" mode="side" position="end">
+    <div>我是右邊選單</div>
+  </mat-sidenav>
+
   <mat-sidenav-content>
     <button mat-raised-button (click)="toggleSideNav(sideNav)">切換選單狀態</button>
     <router-outlet></router-outlet>
