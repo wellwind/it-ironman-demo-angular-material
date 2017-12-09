@@ -43,7 +43,7 @@
   <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="warn"></mat-icon>
 </div>
 
-<h2>扁平化按鈕</h2>
+<h2>扁平化按鈕(mat-button)</h2>
 <div>
   <button mat-button>我是按鈕</button>
   <button mat-button color="primary">Primary</button>
@@ -51,6 +51,24 @@
   <button mat-button color="warn">Warn</button>
   <button mat-button disabled>Disabled</button>
   <a mat-button>Link</a>
+</div>
+
+<h2>凸起的按鈕(mat-raised-button)</h2>
+<div>
+  <button mat-raised-button>我是raised按鈕</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="accent">Accent</button>
+  <button mat-raised-button color="warn">Warn</button>
+  <button mat-raised-button disabled>Disabled</button>
+  <a mat-button>Link</a>
+</div>
+
+<h2>按鈕+Icon</h2>
+<div>
+  <button mat-raised-button color="primary"><mat-icon>thumb_up</mat-icon> 我有Icon</button>
+  <button mat-raised-button color="primary"><mat-icon>thumb_up</mat-icon></button>
+  <button mat-icon-button color="primary"><mat-icon>thumb_up</mat-icon></button>
+  <button mat-raised-button mat-icon-button color="primary"><mat-icon>thumb_up</mat-icon></button>
 </div>
 
 <router-outlet></router-outlet>
