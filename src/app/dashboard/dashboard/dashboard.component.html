@@ -1,11 +1,13 @@
 <mat-sidenav-container>
-  <mat-sidenav #sideNav>
-    我是左邊選單
+  <mat-sidenav #sideNav (opened)="opened()" (closed)="closed()">
+    <div>我是左邊選單</div>
+    <div>
+      <button mat-raised-button color="warn" (click)="toggleSideNav(sideNav)">切換選單狀態</button>
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content>
-      <button mat-button (click)="sideNav.toggle()">切換左邊選單狀態</button>
+    <button mat-raised-button (click)="toggleSideNav(sideNav)">切換選單狀態</button>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
