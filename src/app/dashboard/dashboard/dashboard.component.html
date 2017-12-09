@@ -13,6 +13,11 @@
 
   <mat-sidenav-content>
     <button mat-raised-button (click)="toggleSideNav(sideNav)">切換選單狀態</button>
+
+    <mat-drawer-container style="height:100px;margin:10px;border: 1px solid black">
+      <mat-drawer mode="side" opened="true">Drawer Side</mat-drawer>
+      <mat-drawer-content>Content</mat-drawer-content>
+    </mat-drawer-container>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
