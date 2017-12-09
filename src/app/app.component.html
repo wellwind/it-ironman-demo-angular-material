@@ -1,3 +1,46 @@
 <button mat-raised-button color="primary">Hello World！</button>
 
+<div>
+  Hello, 您登入的使用者帳號為
+  <mat-icon>person</mat-icon>：wellwind
+</div>
+
+<div>
+  這是一般的ICON顏色
+  <mat-icon>person</mat-icon>
+</div>
+
+<div>
+  這是加上primary顏色的ICON
+  <mat-icon color="primary">thumb_up</mat-icon>
+</div>
+
+<div>
+  這是加上accent顏色的ICON
+  <mat-icon color="accent">info</mat-icon>
+</div>
+
+<div>
+  這是加上warn顏色的ICON
+  <mat-icon color="warn">warning</mat-icon>
+</div>
+
+<h2>自行註冊SVG icon</h2>
+
+<div>
+  <mat-icon svgIcon="custom-svg:angular"></mat-icon>
+  <mat-icon svgIcon="custom-svg:angular" color="primary"></mat-icon>
+  <mat-icon svgIcon="custom-svg:angular" color="accent"></mat-icon>
+  <mat-icon svgIcon="custom-svg:angular" color="warn"></mat-icon>
+</div>
+
+<h2>在MatIcon中使用FontAwesome</h2>
+
+<div>
+  <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up"></mat-icon>
+  <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="primary"></mat-icon>
+  <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="accent"></mat-icon>
+  <mat-icon fontSet="fontawesome" fontIcon="fa-thumbs-up" color="warn"></mat-icon>
+</div>
+
 <router-outlet></router-outlet>
