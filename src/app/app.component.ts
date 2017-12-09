@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
     this.matIconRegistry.addSvgIconInNamespace(
       'custom-svg',
       'angular',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/angular_solidBlack.svg'));
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/angular_solidBlack.svg')
+    );
+
+    this.matIconRegistry.registerFontClassAlias('fontawesome', 'fa');
   }
 }
