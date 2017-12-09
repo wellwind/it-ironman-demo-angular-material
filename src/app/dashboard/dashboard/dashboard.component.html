@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sideNav (opened)="opened()" (closed)="closed()">
+  <mat-sidenav #sideNav opened="true" mode="side" (opened)="opened()" (closed)="closed()">
     <div>我是左邊選單</div>
     <div>
       <button mat-raised-button color="warn" (click)="toggleSideNav(sideNav)">切換選單狀態</button>
