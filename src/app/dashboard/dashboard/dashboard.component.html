@@ -1,5 +1,6 @@
+<mat-toolbar>我是Toolbar</mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sideNav opened="true" mode="side" (opened)="opened()" (closed)="closed()">
+  <mat-sidenav #sideNav mode="over" (opened)="opened()" (closed)="closed()" fixedInViewport="true" fixedTopGap="20" fixedBottomGap="20">
     <div>我是左邊選單</div>
     <div>
       <button mat-raised-button color="warn" (click)="toggleSideNav(sideNav)">切換選單狀態</button>
