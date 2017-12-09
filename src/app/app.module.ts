@@ -6,12 +6,22 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedMaterialModule } from './shared-material/shared-material.module';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatButtonToggleModule, MatRippleModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, SharedMaterialModule, MatIconModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    SharedMaterialModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatRippleModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
