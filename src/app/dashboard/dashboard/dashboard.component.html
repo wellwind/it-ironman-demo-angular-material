@@ -8,7 +8,7 @@
   <!-- 在這之後的都會被推到右邊去 -->
   <span class="toolbar-seprator"></span>
 
-  <button mat-icon-button [matMenuTriggerFor]="messageMenu">
+  <button mat-icon-button [matMenuTriggerFor]="messageMenu" #menuTrigger="matMenuTrigger">
     <mat-icon>message</mat-icon>
   </button>
   <mat-menu #messageMenu="matMenu">
@@ -92,6 +92,21 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <div>
+      <button mat-raised-button (click)="menuTrigger.toggleMenu()">開啟訊息設定</button>
+    </div>
+    <div>
+      <div style="text-align:center">
+        <button mat-raised-button [matMenuTriggerFor]="positionMenu">開啟訊息設定，這是一條比較長的按鈕，好確認Menu的生長方向</button>
+        <mat-menu #positionMenu="matMenu" xPosition="before" yPosition="above">
+          <button mat-menu-item>訊息1</button>
+          <button mat-menu-item>訊息2</button>
+          <button mat-menu-item>訊息3</button>
+          <button mat-menu-item>訊息4</button>
+          <button mat-menu-item>訊息5</button>
+        </mat-menu>
+      </div>
+    </div>
     <mat-drawer-container style="height:100px;margin:10px;border: 1px solid black">
       <mat-drawer mode="side" opened="true">Drawer Side</mat-drawer>
       <mat-drawer-content>Content</mat-drawer-content>
