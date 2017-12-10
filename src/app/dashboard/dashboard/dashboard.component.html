@@ -18,10 +18,11 @@
 
 <mat-sidenav-container class="demo-app-container">
   <mat-sidenav class="demo-app-sidenav" #sideNav mode="push" (opened)="opened()" (closed)="closed()">
-    <div>我是左邊選單</div>
-    <div>
-      <button mat-raised-button color="warn" (click)="toggleSideNav(sideNav)">切換選單狀態</button>
-    </div>
+    <mat-list>
+      <mat-list-item>問卷調查</mat-list-item>
+      <mat-list-item>部落格</mat-list-item>
+      <mat-list-item>收件夾</mat-list-item>
+    </mat-list>
   </mat-sidenav>
 
   <mat-sidenav #sideNavEnd opened="true" mode="side" position="end">

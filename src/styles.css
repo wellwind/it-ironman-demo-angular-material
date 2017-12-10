@@ -17,6 +17,10 @@ body {
   padding-top: 64px;
 }
 
+.demo-app-sidenav {
+  width: 200px;
+}
+
 .toolbar-seprator {
   flex: 1 1 auto;
 }
