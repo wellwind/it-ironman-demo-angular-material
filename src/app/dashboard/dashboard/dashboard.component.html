@@ -19,13 +19,13 @@
 <mat-sidenav-container class="demo-app-container">
   <mat-sidenav class="demo-app-sidenav" #sideNav mode="push" (opened)="opened()" (closed)="closed()">
     <mat-list>
-      <mat-list-item>問卷調查</mat-list-item>
-      <mat-list-item>部落格</mat-list-item>
-      <mat-list-item>收件夾</mat-list-item>
+      <a [routerLink]="['/', 'dashboard', 'survey']" mat-list-item>問卷調查</a>
+      <a [routerLink]="['/', 'dashboard', 'blog']" mat-list-item>部落格</a>
+      <a [routerLink]="['/', 'dashboard', 'inbox']" mat-list-item>收件夾</a>
     </mat-list>
   </mat-sidenav>
 
-  <mat-sidenav #sideNavEnd opened="true" mode="side" position="end">
+  <mat-sidenav #sideNavEnd mode="side" position="end">
     <div>我是右邊選單</div>
   </mat-sidenav>
 
