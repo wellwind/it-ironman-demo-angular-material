@@ -6,10 +6,20 @@ import {
   MatButtonToggleModule,
   MatRippleModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatListModule
 } from '@angular/material';
 
 @NgModule({
-  exports: [MatButtonModule, MatIconModule, MatButtonModule, MatButtonToggleModule, MatRippleModule, MatSidenavModule, MatToolbarModule]
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatRippleModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule
+  ]
 })
 export class SharedMaterialModule {}
