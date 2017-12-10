@@ -62,6 +62,24 @@
         <p matLine>找時間吃個飯吧？</p>
       </mat-list-item>
 
+
+      <mat-divider></mat-divider>
+      <h3 matSubheader>
+        <mat-icon>chat_bubble</mat-icon>
+        新訊息
+      </h3>
+      <mat-list-item *ngIf="optNew.selected">這是新消息</mat-list-item>
+      <mat-list-item *ngIf="optAds.selected">這是廣告消息</mat-list-item>
+
+      <mat-divider></mat-divider>
+      <h3 matSubheader>
+        <mat-icon>settings</mat-icon>
+        訊息設定
+      </h3>
+      <mat-selection-list>
+        <mat-list-option [value]="1" selected="true" #optNew>有新訊息時通知我</mat-list-option>
+        <mat-list-option [value]="2" #optAds>顯示廣告訊息</mat-list-option>
+      </mat-selection-list>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -70,7 +88,6 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-
     <mat-drawer-container style="height:100px;margin:10px;border: 1px solid black">
       <mat-drawer mode="side" opened="true">Drawer Side</mat-drawer>
       <mat-drawer-content>Content</mat-drawer-content>
