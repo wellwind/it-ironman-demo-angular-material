@@ -1,9 +1,12 @@
 <mat-toolbar color="primary" class="demo-app-header">
+  <button mat-icon-button (click)="sideNav.toggle()">
+    <mat-icon>{{ sideNav.opened ? 'close' : 'menu' }}</mat-icon>
+  </button>
   <span>IT鐵人賽－Angular Material Demo</span>
 </mat-toolbar>
 
 <mat-sidenav-container class="demo-app-container">
-  <mat-sidenav class="demo-app-sidenav" #sideNav mode="over" opened="true" (opened)="opened()" (closed)="closed()">
+  <mat-sidenav class="demo-app-sidenav" #sideNav mode="push" (opened)="opened()" (closed)="closed()">
     <div>我是左邊選單</div>
     <div>
       <button mat-raised-button color="warn" (click)="toggleSideNav(sideNav)">切換選單狀態</button>
@@ -15,7 +18,6 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <button mat-raised-button (click)="toggleSideNav(sideNav)">切換選單狀態</button>
 
     <mat-drawer-container style="height:100px;margin:10px;border: 1px solid black">
       <mat-drawer mode="side" opened="true">Drawer Side</mat-drawer>
