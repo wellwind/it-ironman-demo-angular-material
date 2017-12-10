@@ -8,9 +8,13 @@
   <!-- 在這之後的都會被推到右邊去 -->
   <span class="toolbar-seprator"></span>
 
-  <button mat-icon-button>
+  <button mat-icon-button [matMenuTriggerFor]="messageMenu">
     <mat-icon>message</mat-icon>
   </button>
+  <mat-menu #messageMenu="matMenu">
+    <button mat-menu-item>最新訊息</button>
+    <button mat-menu-item>訊息設定</button>
+  </mat-menu>
   <button mat-icon-button>
     <mat-icon>exit_to_app</mat-icon>
   </button>

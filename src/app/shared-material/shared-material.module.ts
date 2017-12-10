@@ -7,7 +7,8 @@ import {
   MatRippleModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +20,8 @@ import {
     MatRippleModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
   ]
 })
 export class SharedMaterialModule {}
