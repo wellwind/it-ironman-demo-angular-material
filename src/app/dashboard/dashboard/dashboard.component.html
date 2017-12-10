@@ -18,11 +18,11 @@
 
 <mat-sidenav-container class="demo-app-container">
   <mat-sidenav class="demo-app-sidenav" #sideNav mode="push" (opened)="opened()" (closed)="closed()">
-    <mat-list>
+    <mat-nav-list>
       <a [routerLink]="['/', 'dashboard', 'survey']" mat-list-item>問卷調查</a>
       <a [routerLink]="['/', 'dashboard', 'blog']" mat-list-item>部落格</a>
       <a [routerLink]="['/', 'dashboard', 'inbox']" mat-list-item>收件夾</a>
-    </mat-list>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav #sideNavEnd mode="side" position="end">
