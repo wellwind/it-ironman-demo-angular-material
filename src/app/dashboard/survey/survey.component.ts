@@ -9,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class SurveyComponent implements OnInit {
   isLinear: boolean;
 
-  basicFormGroup: FormGroup;
+  surveyForm: FormGroup;
   constructor() {
-    this.basicFormGroup = new FormGroup({
-      name: new FormControl('', Validators.required)
+    this.surveyForm = new FormGroup({
+      basicQuestions: new FormGroup({
+        name: new FormControl('', Validators.required)
+      })
     });
   }
 
