@@ -2,7 +2,7 @@
 
 <form [formGroup]="surveyForm">
   <mat-vertical-stepper [linear]="isLinear">
-    <mat-step formGroupName="basicQuestions" [stepControl]="surveyForm.get('basicQuestions')">
+    <mat-step formGroupName="basicQuestions" [stepControl]="surveyForm.get('basicQuestions')" optional>
       <ng-template matStepLabel>
         <u>個人資訊</u>
       </ng-template>
@@ -14,7 +14,8 @@
         <button mat-button matStepperNext>前進到「詳細問題」</button>
       </div>
     </mat-step>
-    <mat-step>
+    <!-- 這個step無法被切回來 -->
+    <mat-step editable="false">
       <ng-template matStepLabel>
         <em>詳細問題</em>
       </ng-template>
