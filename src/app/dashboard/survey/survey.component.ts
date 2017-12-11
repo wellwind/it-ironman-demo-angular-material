@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
+  isLinear: boolean;
 
-  constructor() { }
-
-  ngOnInit() {
+  basicFormGroup: FormGroup;
+  constructor() {
+    this.basicFormGroup = new FormGroup({
+      name: new FormControl('', Validators.required)
+    });
   }
 
+  ngOnInit() {}
 }

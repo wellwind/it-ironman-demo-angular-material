@@ -5,9 +5,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SurveyComponent } from './survey/survey.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, DashboardRoutingModule, SharedMaterialModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, DashboardRoutingModule, SharedMaterialModule],
   declarations: [DashboardComponent, MainComponent, SurveyComponent],
   exports: [DashboardComponent]
 })

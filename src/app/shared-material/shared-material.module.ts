@@ -9,7 +9,9 @@ import {
   MatToolbarModule,
   MatListModule,
   MatMenuModule,
-  MatStepperModule
+  MatStepperModule,
+  MatFormFieldModule,
+  MatInputModule
 } from '@angular/material';
 
 @NgModule({
@@ -23,7 +25,9 @@ import {
     MatToolbarModule,
     MatListModule,
     MatMenuModule,
-    MatStepperModule
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class SharedMaterialModule {}

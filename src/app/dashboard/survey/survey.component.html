@@ -1,17 +1,27 @@
-<mat-vertical-stepper>
-  <mat-step>
-    <ng-template matStepLabel>
-      <u>個人資訊</u>
-    </ng-template>
-    <h4>提供個人資訊</h4>
+<button mat-button (click)="isLinear = !isLinear">切換Linear狀態</button>
+<mat-vertical-stepper [linear]="isLinear">
+  <mat-step [stepControl]="basicFormGroup">
+    <form [formGroup]="basicFormGroup">
+      <ng-template matStepLabel>
+        <u>個人資訊</u>
+      </ng-template>
+      <h4>提供個人資訊</h4>
+      <mat-form-field>
+        <input name="name" matInput placeholder="姓名" formControlName="name" required>
+      </mat-form-field>
+    </form>
+    <button mat-button matStepperNext>前進到「詳細問題」</button>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>
       <em>詳細問題</em>
     </ng-template>
     <h4>主要的問題內容</h4>
+    <button mat-button matStepperPrevious>回進到「個人資訊」</button>
+    <button mat-button matStepperNext>前進到「其他」</button>
   </mat-step>
   <mat-step label="其他">
     <h4>其他問題</h4>
+    <button mat-button matStepperPrevious>回進到「詳細問題」</button>
   </mat-step>
 </mat-vertical-stepper>
