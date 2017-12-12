@@ -3,6 +3,8 @@ import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, Ng
 import { Component, OnInit } from '@angular/core';
 import { MatStepperIntl, ErrorStateMatcher } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -40,6 +42,14 @@ export class SurveyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.countries$ = this.httpClient.get<any[]>('assets/countries.json');
+    this.surveyForm
+      .get('basicQuestions')
+      .get('country')
+      .valueChanges.debounceTime(300)
+      .subscribe(inputCountry => {
+        this.countries$ = this.httpClient.get<any[]>('assets/countries.json').map(countries => {
+          return countries.filter(country => country.name.indexOf(inputCountry) >= 0);
+        });
+      });
   }
 }
