@@ -26,6 +26,19 @@
       </div>
       <div>
         <mat-form-field>
+          <input type="text" name="majorTech" matInput placeholder="代表技術" formControlName="majorTech" [matAutocomplete]="majorTechs"
+          />
+        </mat-form-field>
+        <mat-autocomplete #majorTechs="matAutocomplete">
+          <mat-optgroup *ngFor="let techList of majorTechList" [label]="techList.name">
+            <mat-option *ngFor="let tech of techList.items" [value]="tech">
+              {{ tech }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+      </div>
+      <div>
+        <mat-form-field>
           <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required matTextareaAutosize></textarea>
           <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('required')">請記得輸入自我介紹喔！</mat-error>
