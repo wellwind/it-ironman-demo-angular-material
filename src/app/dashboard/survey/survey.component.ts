@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatStepperIntl, ErrorStateMatcher } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -18,25 +20,26 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css'],
-  providers: [
-    { provide: MatStepperIntl, useClass: TwStepperIntl },
-    { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }
-  ]
+  providers: [{ provide: MatStepperIntl, useClass: TwStepperIntl }, { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }]
 })
 export class SurveyComponent implements OnInit {
   isLinear: boolean;
 
   surveyForm: FormGroup;
   intro: string;
+  countries$: Observable<any[]>;
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
         name: new FormControl('', Validators.required),
-        intro: new FormControl('', [Validators.required, Validators.minLength(10)])
+        intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
+        country: new FormControl('')
       })
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.countries$ = this.httpClient.get<any[]>('assets/countries.json');
+  }
 }

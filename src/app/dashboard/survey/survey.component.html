@@ -16,7 +16,17 @@
       </div>
       <div>
         <mat-form-field>
-          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required></textarea>
+          <input type="text" name="country" matInput placeholder="國家" formControlName="country" [matAutocomplete]="countries" />
+        </mat-form-field>
+        <mat-autocomplete #countries="matAutocomplete">
+          <mat-option *ngFor="let country of countries$ | async" [value]="country.name">
+            {{ country.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <div>
+        <mat-form-field>
+          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required matTextareaAutosize></textarea>
           <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('required')">請記得輸入自我介紹喔！</mat-error>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('minlength')">至少輸入10個字吧！</mat-error>
@@ -30,6 +40,7 @@
       <div>
         <button mat-button matStepperNext>前進到「詳細問題」</button>
       </div>
+
     </mat-step>
     <!-- 這個step無法被切回來 -->
     <mat-step editable="false">
