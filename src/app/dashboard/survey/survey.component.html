@@ -1,5 +1,4 @@
 <button mat-button (click)="isLinear = !isLinear">切換Linear狀態</button>
-
 <form [formGroup]="surveyForm">
   <mat-vertical-stepper [linear]="isLinear">
     <mat-step formGroupName="basicQuestions" [stepControl]="surveyForm.get('basicQuestions')" optional>
@@ -10,6 +9,16 @@
       <mat-form-field>
         <input name="name" matInput placeholder="姓名" formControlName="name" required>
       </mat-form-field>
+      <div>
+        <mat-form-field>
+          <input type="text" name="nickname" matInput placeholder="暱稱" />
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <textarea name="intro_self" matInput placeholder="自我介紹"></textarea>
+        </mat-form-field>
+      </div>
       <div>
         <button mat-button matStepperNext>前進到「詳細問題」</button>
       </div>
