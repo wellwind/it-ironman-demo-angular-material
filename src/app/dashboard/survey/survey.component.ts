@@ -1,9 +1,17 @@
-import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { MatStepperIntl } from '@angular/material';
+import { MatStepperIntl, ErrorStateMatcher } from '@angular/material';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
+}
+
+// 調整時機為invalid + dirty即顯示錯誤訊息
+export class EarlyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && control.dirty);
+  }
 }
 
 @Component({
@@ -17,6 +25,7 @@ export class SurveyComponent implements OnInit {
 
   surveyForm: FormGroup;
   intro: string;
+  earlyErrorStateMacher = new EarlyErrorStateMatcher();
   constructor() {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
