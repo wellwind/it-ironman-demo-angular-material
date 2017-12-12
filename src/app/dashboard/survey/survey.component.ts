@@ -16,10 +16,12 @@ export class SurveyComponent implements OnInit {
   isLinear: boolean;
 
   surveyForm: FormGroup;
+  intro: string;
   constructor() {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
-        name: new FormControl('', Validators.required)
+        name: new FormControl('', Validators.required),
+        intro: new FormControl('', [Validators.required, Validators.minLength(10)])
       })
     });
   }
