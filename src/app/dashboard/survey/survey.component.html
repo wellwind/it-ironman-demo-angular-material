@@ -16,7 +16,7 @@
       </div>
       <div>
         <mat-form-field>
-          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required [errorStateMatcher]="earlyErrorStateMacher"></textarea>
+          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required></textarea>
           <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('required')">請記得輸入自我介紹喔！</mat-error>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('minlength')">至少輸入10個字吧！</mat-error>

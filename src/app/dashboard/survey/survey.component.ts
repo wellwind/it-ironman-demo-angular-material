@@ -18,14 +18,17 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css'],
-  providers: [{ provide: MatStepperIntl, useClass: TwStepperIntl }]
+  providers: [
+    { provide: MatStepperIntl, useClass: TwStepperIntl },
+    { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }
+  ]
 })
 export class SurveyComponent implements OnInit {
   isLinear: boolean;
 
   surveyForm: FormGroup;
   intro: string;
-  earlyErrorStateMacher = new EarlyErrorStateMatcher();
+
   constructor() {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
