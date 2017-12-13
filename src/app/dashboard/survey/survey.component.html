@@ -47,7 +47,7 @@
       </div>
       <div>
         <mat-form-field>
-          <input type="text" name="birthday" matInput placeholder="生日" [matDatepicker]="demoDatepicker" />
+          <input type="text" name="birthday" matInput placeholder="生日" [matDatepicker]="demoDatepicker" formControlName="birthday" />
           <mat-datepicker-toggle [for]="demoDatepicker" matSuffix></mat-datepicker-toggle>
           <mat-datepicker #demoDatepicker></mat-datepicker>
         </mat-form-field>

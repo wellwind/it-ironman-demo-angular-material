@@ -22,7 +22,10 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css'],
-  providers: [{ provide: MatStepperIntl, useClass: TwStepperIntl }, { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }]
+  providers: [
+    { provide: MatStepperIntl, useClass: TwStepperIntl },
+    { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }
+  ]
 })
 export class SurveyComponent implements OnInit {
   isLinear: boolean;
@@ -39,7 +42,8 @@ export class SurveyComponent implements OnInit {
         name: new FormControl('', Validators.required),
         intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
         country: new FormControl(''),
-        majorTech: new FormControl('')
+        majorTech: new FormControl(''),
+        birthday: new FormControl('')
       })
     });
   }
