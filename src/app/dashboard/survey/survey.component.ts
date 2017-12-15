@@ -5,6 +5,7 @@ import { MatStepperIntl, ErrorStateMatcher } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
+import * as moment from 'moment';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -28,6 +29,7 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   ]
 })
 export class SurveyComponent implements OnInit {
+  startDate = moment(new Date(1999, 0, 1));
   isLinear: boolean;
 
   surveyForm: FormGroup;
@@ -43,7 +45,7 @@ export class SurveyComponent implements OnInit {
         intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
         country: new FormControl(''),
         majorTech: new FormControl(''),
-        birthday: new FormControl('')
+        birthday: new FormControl()
       })
     });
   }
