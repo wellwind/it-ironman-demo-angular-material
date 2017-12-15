@@ -23,13 +23,13 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styleUrls: ['./survey.component.css'],
-  providers: [
-    { provide: MatStepperIntl, useClass: TwStepperIntl },
-    { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }
-  ]
+  providers: [{ provide: MatStepperIntl, useClass: TwStepperIntl }, { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }]
 })
 export class SurveyComponent implements OnInit {
-  startDate = moment(new Date(1999, 0, 1));
+  startDate = moment('1999-1-10');
+  minDate = moment('1999-1-5');
+  maxDate = moment('1999-1-15');
+
   isLinear: boolean;
 
   surveyForm: FormGroup;
