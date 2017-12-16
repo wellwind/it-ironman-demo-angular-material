@@ -49,8 +49,8 @@
         <mat-form-field>
           <input type="text" name="birthday" matInput (dateInput)="logDateInput($event)" (dateChange)="logDateChange($event)" placeholder="生日"
             [matDatepicker]="demoDatepicker" formControlName="birthday" />
-          <mat-datepicker-toggle [for]="demoDatepicker" matSuffix disabled></mat-datepicker-toggle>
-          <mat-datepicker #demoDatepicker [startAt]="startDate"></mat-datepicker>
+          <mat-datepicker-toggle [for]="demoDatepicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #demoDatepicker [startAt]="startDate" disabled="false"></mat-datepicker>
         </mat-form-field>
       </div>
       <div>
