@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { MatStepperIntl, ErrorStateMatcher } from '@angular/material';
+import { MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -89,5 +89,13 @@ export class SurveyComponent implements OnInit {
   familyDayFilter(date: moment.Moment): boolean {
     const day = date.day();
     return day !== 2 && day !== 5;
+  }
+
+  logDateInput($event: MatDatepickerInputEvent<moment.Moment>) {
+    console.log($event);
+  }
+
+  logDateChange($event: MatDatepickerInputEvent<moment.Moment>) {
+    console.log($event);
   }
 }
