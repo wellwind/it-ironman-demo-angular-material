@@ -37,7 +37,6 @@ export class SurveyComponent implements OnInit {
   countries$: Observable<any[]>;
 
   majorTechList: any[];
-
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
@@ -45,7 +44,7 @@ export class SurveyComponent implements OnInit {
         intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
         country: new FormControl(''),
         majorTech: new FormControl(''),
-        birthday: new FormControl()
+        birthday: new FormControl({value: '', disabled : true})
       })
     });
   }
