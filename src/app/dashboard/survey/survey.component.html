@@ -55,7 +55,10 @@
       </div>
       <div>
         <mat-form-field>
-          <mat-select formControlName="interest" placeholder="你的休閒愛好?" multiple>
+          <mat-select formControlName="interest" #selectInterest placeholder="你的休閒愛好?" multiple>
+            <mat-select-trigger>
+              共選擇了 {{ selectInterest.selected.length }} 項興趣
+            </mat-select-trigger>
             <mat-optgroup *ngFor="let parent of nestInterestList; let index = index" [label]="parent.name" [disabled]="index===1">
               <mat-option *ngFor="let child of parent.subItems" [value]="child.id">{{ child.name }}</mat-option>
             </mat-optgroup>
