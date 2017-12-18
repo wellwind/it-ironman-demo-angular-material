@@ -54,6 +54,13 @@
         <button mat-raised-button (click)="demoDatepicker.opened = true">打開Datepicker</button>
       </div>
       <div>
+        <mat-form-field>
+          <mat-select formControlName="interest">
+            <mat-option *ngFor="let item of interestList" [value]="item.id">{{ item.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
         <button mat-button matStepperNext>前進到「詳細問題」</button>
       </div>
 
