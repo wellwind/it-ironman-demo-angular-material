@@ -55,7 +55,7 @@
       </div>
       <div>
         <mat-form-field>
-          <mat-select formControlName="interest">
+          <mat-select formControlName="interest" placeholder="你的休閒愛好?">
             <mat-option *ngFor="let item of interestList" [value]="item.id">{{ item.name }}</mat-option>
           </mat-select>
         </mat-form-field>
