@@ -6,11 +6,13 @@
         <u>個人資訊</u>
       </ng-template>
       <h4>提供個人資訊</h4>
-      <mat-form-field>
-        <input name="name" matInput placeholder="姓名" formControlName="name" required>
-      </mat-form-field>
       <div>
-        <mat-form-field>
+        <mat-form-field floatLabel="always">
+          <input name="name" matInput placeholder="姓名" formControlName="name" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field floatLabel="never">
           <input type="text" name="nickname" matInput placeholder="暱稱" />
         </mat-form-field>
       </div>
