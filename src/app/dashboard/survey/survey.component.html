@@ -7,8 +7,14 @@
       </ng-template>
       <h4>提供個人資訊</h4>
       <div>
-        <mat-form-field floatLabel="always" [hideRequiredMarker]="true">
-          <input name="name" matInput placeholder="姓名" formControlName="name" required>
+        <mat-form-field floatLabel="auto" [hideRequiredMarker]="true" hintLabel="最多輸入5個字">
+          <input name="name" matInput formControlName="name" maxlength="5" required>
+          <mat-placeholder>
+            <mat-icon>person</mat-icon>請輸入您的姓名
+          </mat-placeholder>
+          <mat-hint align="end">
+            已輸入： {{ surveyForm.get('basicQuestions')?.get('name')?.value?.length || 0 }} / 5
+          </mat-hint>
         </mat-form-field>
       </div>
       <div>
