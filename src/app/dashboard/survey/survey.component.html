@@ -15,6 +15,7 @@
           <mat-hint align="end">
             已輸入： {{ surveyForm.get('basicQuestions')?.get('name')?.value?.length || 0 }} / 5
           </mat-hint>
+          <mat-error>姓名欄位有錯誤</mat-error>
         </mat-form-field>
       </div>
       <div>
