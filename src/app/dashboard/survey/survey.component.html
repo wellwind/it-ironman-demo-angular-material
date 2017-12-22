@@ -83,7 +83,7 @@
 
     </mat-step>
     <!-- 這個step無法被切回來 -->
-    <mat-step editable="false" formGroupName="mainQuestinos" [stepControl]="surveyForm.get('mainQuestinos')">
+    <mat-step editable="false" formGroupName="mainQuestions" [stepControl]="surveyForm.get('mainQuestions')">
       <ng-template matStepLabel>
         <em>詳細問題</em>
       </ng-template>
@@ -101,12 +101,6 @@
         <mat-checkbox formControlName="payForBook">書籍</mat-checkbox>
         <mat-checkbox formControlName="payForMusic">音樂</mat-checkbox>
         <mat-checkbox formControlName="payForMovie">電影</mat-checkbox>
-      </div>
-      <div>
-        <div>除了生活消費外，你最常花費在哪些項目上？(調整label位置)</div>
-        <mat-checkbox formControlName="payForBook" labelPosition="before">書籍</mat-checkbox>
-        <mat-checkbox formControlName="payForMusic" labelPosition="before">音樂</mat-checkbox>
-        <mat-checkbox formControlName="payForMovie" labelPosition="before">電影</mat-checkbox>
       </div>
       <button mat-button matStepperPrevious>回進到「個人資訊」</button>
       <button mat-button matStepperNext>前進到「其他」</button>

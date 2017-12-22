@@ -54,7 +54,7 @@ export class SurveyComponent implements OnInit {
         birthday: new FormControl({ value: '', disabled: true }),
         interest: new FormControl(null),
       }),
-      mainQuestinos: new FormGroup({
+      mainQuestions: new FormGroup({
         payForBook: new FormControl(false),
         payForMusic: new FormControl(false),
         payForMovie: new FormControl(true),
