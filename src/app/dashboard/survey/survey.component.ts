@@ -71,6 +71,9 @@ export class SurveyComponent implements OnInit {
         payForMovie: new FormControl(true),
         angularLikeScore: new FormControl(5),
         angularMaterialLikeScore: new FormControl(5),
+        subscribeAngular: new FormControl(true),
+        subscribeAngularMaterial: new FormControl(true),
+        subscribeNgRx: new FormControl(false)
       })
     });
   }
