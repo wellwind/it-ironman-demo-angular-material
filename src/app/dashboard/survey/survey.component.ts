@@ -52,8 +52,13 @@ export class SurveyComponent implements OnInit {
         country: new FormControl(''),
         majorTech: new FormControl(''),
         birthday: new FormControl({ value: '', disabled: true }),
-        interest: new FormControl(null)
-      })
+        interest: new FormControl(null),
+      }),
+      mainQuestinos: new FormGroup({
+        payForBook: new FormControl(false),
+        payForMusic: new FormControl(false),
+        payForMovie: new FormControl(true),
+      }),
     });
   }
 

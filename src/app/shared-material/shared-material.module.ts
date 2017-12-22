@@ -17,7 +17,8 @@ import {
   MatNativeDateModule,
   MAT_DATE_LOCALE,
   MAT_DATE_FORMATS,
-  MatSelectModule
+  MatSelectModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -50,7 +51,8 @@ export const TW_FORMATS = {
     MatAutocompleteModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'zh-TW' },
