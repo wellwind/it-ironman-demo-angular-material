@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material';
+import { MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent, MAT_LABEL_GLOBAL_OPTIONS, MatCheckboxChange } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
@@ -44,6 +44,8 @@ export class SurveyComponent implements OnInit {
   interestList: any[];
   nestInterestList: any[];
 
+  indeterminateSelectedPayFor: boolean;
+
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
@@ -52,13 +54,14 @@ export class SurveyComponent implements OnInit {
         country: new FormControl(''),
         majorTech: new FormControl(''),
         birthday: new FormControl({ value: '', disabled: true }),
-        interest: new FormControl(null),
+        interest: new FormControl(null)
       }),
       mainQuestions: new FormGroup({
+        payForAll: new FormControl(false),
         payForBook: new FormControl(false),
         payForMusic: new FormControl(false),
-        payForMovie: new FormControl(true),
-      }),
+        payForMovie: new FormControl(true)
+      })
     });
   }
 
@@ -133,6 +136,8 @@ export class SurveyComponent implements OnInit {
         ]
       }
     ];
+
+    this._setSelectAllState();
   }
 
   highlightFiltered(countryName: string) {
@@ -159,5 +164,37 @@ export class SurveyComponent implements OnInit {
 
   logDateChange($event: MatDatepickerInputEvent<moment.Moment>) {
     console.log($event);
+  }
+
+  checkAllChange($event: MatCheckboxChange) {
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForBook')
+      .setValue($event.checked);
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForMusic')
+      .setValue($event.checked);
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForMovie')
+      .setValue($event.checked);
+    this._setSelectAllState();
+  }
+
+  payForChange() {
+    this._setSelectAllState();
+  }
+
+  private _setSelectAllState() {
+    const payForBook = this.surveyForm.get('mainQuestions').get('payForBook').value;
+    const payForMusic = this.surveyForm.get('mainQuestions').get('payForMusic').value;
+    const payForMovie = this.surveyForm.get('mainQuestions').get('payForMovie').value;
+    const count = (payForBook ? 1 : 0) + (payForMusic ? 1 : 0) + (payForMovie ? 1 : 0);
+    this.surveyForm
+      .get('mainQuestions')
+      .get('payForAll')
+      .setValue(count === 3);
+    this.indeterminateSelectedPayFor = count > 0 && count < 3;
   }
 }

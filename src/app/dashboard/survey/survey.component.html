@@ -98,9 +98,10 @@
       </div>
       <div>
         <div>除了生活消費外，你最常花費在哪些項目上？</div>
-        <mat-checkbox formControlName="payForBook">書籍</mat-checkbox>
-        <mat-checkbox formControlName="payForMusic">音樂</mat-checkbox>
-        <mat-checkbox formControlName="payForMovie">電影</mat-checkbox>
+        <mat-checkbox formControlName="payForAll" [indeterminate]="indeterminateSelectedPayFor" (change)="checkAllChange($event)">全部</mat-checkbox>
+        <mat-checkbox formControlName="payForBook" (change)="payForChange()">書籍</mat-checkbox>
+        <mat-checkbox formControlName="payForMusic" (change)="payForChange()">音樂</mat-checkbox>
+        <mat-checkbox formControlName="payForMovie" (change)="payForChange()">電影</mat-checkbox>
       </div>
       <button mat-button matStepperPrevious>回進到「個人資訊」</button>
       <button mat-button matStepperNext>前進到「其他」</button>
