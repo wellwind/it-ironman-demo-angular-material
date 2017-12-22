@@ -103,6 +103,26 @@
         <mat-checkbox formControlName="payForMusic" (change)="payForChange()" color="accent">音樂</mat-checkbox>
         <mat-checkbox formControlName="payForMovie" (change)="payForChange()" color="warn">電影</mat-checkbox>
       </div>
+      <div>
+        <div>對於Angular，你的評價是？</div>
+        <mat-radio-group formControlName="angularMaterialLikeScore">
+          <mat-radio-button [value]="1">超討厭</mat-radio-button>
+          <mat-radio-button [value]="2">討厭</mat-radio-button>
+          <mat-radio-button [value]="3">普通</mat-radio-button>
+          <mat-radio-button [value]="4">喜歡</mat-radio-button>
+          <mat-radio-button [value]="5">超喜歡</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <div>對於Angular Material，你的評價是？</div>
+        <mat-radio-group formControlName="angularMaterialLikeScore">
+          <mat-radio-button [value]="1">超討厭</mat-radio-button>
+          <mat-radio-button [value]="2">討厭</mat-radio-button>
+          <mat-radio-button [value]="3">普通</mat-radio-button>
+          <mat-radio-button [value]="4">喜歡</mat-radio-button>
+          <mat-radio-button [value]="5">超喜歡</mat-radio-button>
+        </mat-radio-group>
+      </div>
       <button mat-button matStepperPrevious>回進到「個人資訊」</button>
       <button mat-button matStepperNext>前進到「其他」</button>
     </mat-step>
