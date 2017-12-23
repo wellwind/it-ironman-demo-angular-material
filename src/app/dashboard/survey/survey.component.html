@@ -138,8 +138,26 @@
       <button mat-button matStepperPrevious>回進到「個人資訊」</button>
       <button mat-button matStepperNext>前進到「其他」</button>
     </mat-step>
-    <mat-step label="其他">
+    <mat-step label="其他" formGroupName="otherQuestions" [stepControl]="surveyForm.get('otherQuestions')">
       <h4>其他問題</h4>
+      <div>
+        選擇你最喜歡的顏色
+      </div>
+      <div>
+        <span>Red</span>
+        <mat-slider formControlName="favoriteColorRed" min="0" max="255" step="1"></mat-slider>
+      </div>
+      <div>
+        <span>Green</span>
+        <mat-slider formControlName="favoriteColorGreen" min="0" max="255" step="1"></mat-slider>
+      </div>
+      <div>
+        <span>Blue</span>
+        <mat-slider formControlName="favoriteColorBlue" min="0" max="255" step="1"></mat-slider>
+      </div>
+      <div>RGB: ({{ selectedColorRed }}, {{ selectedColorGreen }}, {{ selectedColorBlue }})</div>
+      <div style="width: 50px; height: 50px; border: 1px solid #000" [ngStyle]="{background: selectedColorStyle}"></div>
+
       <button mat-button matStepperPrevious>回進到「詳細問題」</button>
     </mat-step>
   </mat-vertical-stepper>
