@@ -140,6 +140,7 @@
     </mat-step>
     <mat-step label="其他" formGroupName="otherQuestions" [stepControl]="surveyForm.get('otherQuestions')">
       <h4>其他問題</h4>
+      <section>
       <div>
         選擇你最喜歡的顏色
       </div>
@@ -157,7 +158,11 @@
       </div>
       <div>RGB: ({{ selectedColorRed }}, {{ selectedColorGreen }}, {{ selectedColorBlue }})</div>
       <div style="width: 50px; height: 50px; border: 1px solid #000" [ngStyle]="{background: selectedColorStyle}"></div>
-
+    </section>
+    <section>
+      <div>關於這個問卷你覺得設計得如何？</div>
+      <mat-slider formControlName="surveyScore" min="0" max="100" step="5" thumbLabel [tickInterval]="2"></mat-slider>
+    </section>
       <button mat-button matStepperPrevious>回進到「詳細問題」</button>
     </mat-step>
   </mat-vertical-stepper>
