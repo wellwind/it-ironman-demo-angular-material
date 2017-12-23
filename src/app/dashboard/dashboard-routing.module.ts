@@ -3,15 +3,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { SurveyComponent } from './survey/survey.component';
+import { BlogComponent } from './blog/blog.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
-      { path: '', redirectTo: 'survey' , pathMatch: 'full'},
+      { path: '', redirectTo: 'blog', pathMatch: 'full' },
       { path: 'main', component: MainComponent },
-      { path: 'survey', component: SurveyComponent }
+      { path: 'survey', component: SurveyComponent },
+      { path: 'blog', component: BlogComponent }
     ]
   }
 ];
