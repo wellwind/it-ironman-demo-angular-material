@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-blog',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
+  posts$: Observable<any>;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
+    this.posts$ = this.httpClient.get<any[]>('https://jsonplaceholder.typicode.com/posts').map(posts => {
+      return posts.slice(0, 6);
+    });
   }
-
 }

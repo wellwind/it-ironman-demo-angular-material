@@ -1,8 +1,8 @@
-<mat-grid-list cols="3" rowHeight="100px" gutterSize="20px">
+<mat-grid-list cols="3" rowHeight="100px">
   <mat-grid-tile style="background: red" colspan="2">
     Tile 1(橫幅廣告)
   </mat-grid-tile>
-  <mat-grid-tile style="background: green" rowspan="5">
+  <mat-grid-tile style="background: green" rowspan="22">
     <mat-grid-tile-header>
       <h3 mat-line>功能清單</h3>
       <span mat-line>選擇你要的</span>
@@ -17,9 +17,18 @@
     </mat-grid-tile-footer>
     Tile 2(右邊清單資訊)
   </mat-grid-tile>
-  <mat-grid-tile style="background: blue" colspan="2" rowspan="3">
-    Tile 3(文章內容區)
+
+  <mat-grid-tile rowspan="2" style="background: blue">
+    置頂文章1
   </mat-grid-tile>
+  <mat-grid-tile rowspan="2"  style="background: blue">
+    置頂文章2
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngFor="let post of posts$ | async" rowspan="6"  style="background: blue">
+    {{ post.title }}
+  </mat-grid-tile>
+
   <mat-grid-tile style="background: yellow" colspan="2">
     Tile 4(下方橫幅廣告)
   </mat-grid-tile>
