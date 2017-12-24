@@ -21,12 +21,14 @@
   <mat-grid-tile rowspan="2" style="background: blue">
     置頂文章1
   </mat-grid-tile>
-  <mat-grid-tile rowspan="2"  style="background: blue">
+  <mat-grid-tile rowspan="2" style="background: blue">
     置頂文章2
   </mat-grid-tile>
 
-  <mat-grid-tile *ngFor="let post of posts$ | async" rowspan="6"  style="background: blue">
-    {{ post.title }}
+  <mat-grid-tile *ngFor="let post of posts$ | async" rowspan="6">
+    <mat-card class="post-tile">
+      {{ post.title }}
+    </mat-card>
   </mat-grid-tile>
 
   <mat-grid-tile style="background: yellow" colspan="2">

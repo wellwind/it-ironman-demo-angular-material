@@ -34,3 +34,9 @@ body {
 .blue-dropdown .mat-select-content {
   background: rgba(0, 0, 255, 0.5);
 }
+
+.post-tile {
+  align-self: flex-start;
+  width: 100%;
+  margin: 5px;
+}
