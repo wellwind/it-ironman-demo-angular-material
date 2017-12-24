@@ -44,3 +44,8 @@ body {
 .post-tile .mat-card-image {
   max-height: 300px;
 }
+
+mat-card:focus {
+  background: lightblue;
+  width: 95%;
+}
