@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 export class BlogComponent implements OnInit {
   progress = 60;
   strokeWidth = 1;
+  diameter = 100;
   posts$: Observable<any>;
 
   constructor(private httpClient: HttpClient) {}

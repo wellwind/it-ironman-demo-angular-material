@@ -55,6 +55,13 @@
       <button mat-raised-button (click)="strokeWidth = strokeWidth - 1">-1</button>
       {{ strokeWidth }}
       <button mat-raised-button (click)="strokeWidth = strokeWidth + 1">+1</button>
+
+      <h4>Spinner Stroke Width</h4>
+      <mat-progress-spinner value="60" [diameter]="diameter"></mat-progress-spinner>
+      <button mat-raised-button (click)="diameter = diameter - 10">-10</button>
+      {{ diameter }}
+      <button mat-raised-button (click)="diameter = diameter + 10">+10</button>
+  
     </div>
   </mat-grid-tile>
 
