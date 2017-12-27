@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./blog.component.css']
 })
 export class BlogComponent implements OnInit {
+  progress = 60;
   posts$: Observable<any>;
 
   constructor(private httpClient: HttpClient) {}
