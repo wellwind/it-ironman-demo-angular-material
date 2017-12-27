@@ -41,6 +41,12 @@
 
       <h4>Warn</h4>
       <mat-progress-bar mode="buffer" color="warn"></mat-progress-bar>
+
+      <h4>Progress Spinner</h4>
+      <mat-progress-spinner [value]="progress"></mat-progress-spinner>
+      <button mat-raised-button (click)="progress = progress - 10">-10</button>
+      <button mat-raised-button (click)="progress = progress + 10">+10</button>
+
     </div>
   </mat-grid-tile>
 
