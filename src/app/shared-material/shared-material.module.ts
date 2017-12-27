@@ -23,7 +23,8 @@ import {
   MatSlideToggleModule,
   MatSliderModule,
   MatGridListModule,
-  MatCardModule
+  MatCardModule,
+  MatProgressBarModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -62,7 +63,8 @@ export const TW_FORMATS = {
     MatSlideToggleModule,
     MatSliderModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'zh-TW' },

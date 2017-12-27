@@ -2,7 +2,7 @@
   <mat-grid-tile style="background: red" colspan="2">
     Tile 1(橫幅廣告)
   </mat-grid-tile>
-  <mat-grid-tile style="background: green" rowspan="22">
+  <mat-grid-tile rowspan="22">
     <mat-grid-tile-header>
       <h3 mat-line>功能清單</h3>
       <span mat-line>選擇你要的</span>
@@ -15,7 +15,13 @@
       <span mat-line>但我不想死</span>
       <mat-icon>thumb_up</mat-icon>
     </mat-grid-tile-footer>
-    Tile 2(右邊清單資訊)
+
+    <div class="blog-sidebard-content">
+      <h4>
+        發文進度
+      </h4>
+      <mat-progress-bar></mat-progress-bar>
+    </div>
   </mat-grid-tile>
 
   <mat-grid-tile rowspan="2">
