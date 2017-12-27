@@ -61,7 +61,9 @@
       <button mat-raised-button (click)="diameter = diameter - 10">-10</button>
       {{ diameter }}
       <button mat-raised-button (click)="diameter = diameter + 10">+10</button>
-  
+
+      <h4>Very Small Spinner</h4>
+      <mat-spinner [diameter]="30" [strokeWidth]="1"></mat-spinner>
     </div>
   </mat-grid-tile>
 
