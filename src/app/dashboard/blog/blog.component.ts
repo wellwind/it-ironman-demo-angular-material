@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/delay';
 
 @Component({
   selector: 'app-blog',
@@ -18,6 +19,6 @@ export class BlogComponent implements OnInit {
   ngOnInit() {
     this.posts$ = this.httpClient.get<any[]>('https://jsonplaceholder.typicode.com/posts').map(posts => {
       return posts.slice(0, 6);
-    });
+    }).delay(1500);
   }
 }
