@@ -47,6 +47,14 @@
       <button mat-raised-button (click)="progress = progress - 10">-10</button>
       <button mat-raised-button (click)="progress = progress + 10">+10</button>
 
+      <h4>Indeterminate Progress Spinner</h4>
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+
+      <h4>Spinner Stroke Width</h4>
+      <mat-progress-spinner value="60" [strokeWidth]="strokeWidth"></mat-progress-spinner>
+      <button mat-raised-button (click)="strokeWidth = strokeWidth - 1">-1</button>
+      {{ strokeWidth }}
+      <button mat-raised-button (click)="strokeWidth = strokeWidth + 1">+1</button>
     </div>
   </mat-grid-tile>
 
