@@ -1,7 +1,6 @@
 import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconRegistry, MatRipple } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-main',
