@@ -31,12 +31,15 @@ export class SurveyComponent implements OnInit {
   intro: string;
   countries$: Observable<any[]>;
 
+  majorTechList: any[];
+
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
         name: new FormControl('', Validators.required),
         intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
-        country: new FormControl('')
+        country: new FormControl(''),
+        majorTech: new FormControl('')
       })
     });
   }
@@ -51,5 +54,16 @@ export class SurveyComponent implements OnInit {
           return countries.filter(country => country.name.indexOf(inputCountry) >= 0);
         });
       });
+
+    this.majorTechList = [
+      {
+        name: '前端',
+        items: ['HTML', 'CSS', 'JavaScript']
+      },
+      {
+        name: '後端',
+        items: ['C#', 'NodeJs', 'Go']
+      }
+    ];
   }
 }
