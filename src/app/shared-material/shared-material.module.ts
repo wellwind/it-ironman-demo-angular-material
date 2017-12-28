@@ -11,7 +11,8 @@ import {
   MatMenuModule,
   MatStepperModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatAutocompleteModule
 } from '@angular/material';
 
 @NgModule({
@@ -27,7 +28,8 @@ import {
     MatMenuModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatAutocompleteModule
   ]
 })
 export class SharedMaterialModule {}
