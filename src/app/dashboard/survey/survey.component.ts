@@ -72,4 +72,22 @@ export class SurveyComponent implements OnInit {
       }
     ];
   }
+
+  highlightFiltered(countryName: string) {
+    const inputCountry = this.surveyForm.get('basicQuestions').get('country').value;
+    return countryName.replace(inputCountry, `<span class="autocomplete-highlight">${inputCountry}</span>`);
+  }
+
+  displayCountry(country: any) {
+    if (country) {
+      return `${country.name} / ${country.code}`;
+    } else {
+      return '';
+    }
+  }
+
+  familyDayFilter(date: moment.Moment): boolean {
+    const day = date.day();
+    return day !== 2 && day !== 5;
+  }
 }
