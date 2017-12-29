@@ -47,8 +47,11 @@
       </div>
       <div>
         <mat-form-field>
-          <input type="date" name="birthday" matInput placeholder="生日" />
+          <input type="text" name="birthday" matInput (dateInput)="logDateInput($event)" (dateChange)="logDateChange($event)" placeholder="生日"
+            [matDatepicker]="demoDatepicker" formControlName="birthday" />
+          <mat-datepicker #demoDatepicker [startAt]="startDate" disabled="false" touchUi="true"></mat-datepicker>
         </mat-form-field>
+        <button mat-raised-button (click)="demoDatepicker.opened = true">打開Datepicker</button>
       </div>
       <div>
         <button mat-button matStepperNext>前進到「詳細問題」</button>

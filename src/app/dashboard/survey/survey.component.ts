@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { MatStepperIntl, ErrorStateMatcher } from '@angular/material';
+import { MatStepperIntl, ErrorStateMatcher, MatDatepickerInputEvent } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
+import * as moment from 'moment';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -25,6 +26,10 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
   providers: [{ provide: MatStepperIntl, useClass: TwStepperIntl }, { provide: ErrorStateMatcher, useClass: EarlyErrorStateMatcher }]
 })
 export class SurveyComponent implements OnInit {
+  startDate = moment('1999-1-10');
+  minDate = moment('1999-1-5');
+  maxDate = moment('1999-1-15');
+
   isLinear: boolean;
 
   surveyForm: FormGroup;
@@ -32,14 +37,14 @@ export class SurveyComponent implements OnInit {
   countries$: Observable<any[]>;
 
   majorTechList: any[];
-
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
         name: new FormControl('', Validators.required),
         intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
         country: new FormControl(''),
-        majorTech: new FormControl('')
+        majorTech: new FormControl(''),
+        birthday: new FormControl({ value: '', disabled: true})
       })
     });
   }
@@ -65,5 +70,31 @@ export class SurveyComponent implements OnInit {
         items: ['C#', 'NodeJs', 'Go']
       }
     ];
+  }
+
+  highlightFiltered(countryName: string) {
+    const inputCountry = this.surveyForm.get('basicQuestions').get('country').value;
+    return countryName.replace(inputCountry, `<span class="autocomplete-highlight">${inputCountry}</span>`);
+  }
+
+  displayCountry(country: any) {
+    if (country) {
+      return `${country.name} / ${country.code}`;
+    } else {
+      return '';
+    }
+  }
+
+  familyDayFilter(date: moment.Moment): boolean {
+    const day = date.day();
+    return day !== 2 && day !== 5;
+  }
+
+  logDateInput($event: MatDatepickerInputEvent<moment.Moment>) {
+    console.log($event);
+  }
+
+  logDateChange($event: MatDatepickerInputEvent<moment.Moment>) {
+    console.log($event);
   }
 }
