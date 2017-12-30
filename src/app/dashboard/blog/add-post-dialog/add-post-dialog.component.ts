@@ -8,11 +8,16 @@ import { AddPostConfirmDialogComponent } from '../add-post-confirm-dialog/add-po
   styleUrls: ['./add-post-dialog.component.css']
 })
 export class AddPostDialogComponent implements OnInit {
+  title: string;
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {}
 
   doPost() {
-    this.dialog.open(AddPostConfirmDialogComponent);
+    this.dialog.open(AddPostConfirmDialogComponent, {
+      data: {
+        title: this.title
+      }
+    });
   }
 }

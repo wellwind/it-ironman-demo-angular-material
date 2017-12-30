@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-post-confirm-dialog',
@@ -7,7 +7,10 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./add-post-confirm-dialog.component.css']
 })
 export class AddPostConfirmDialogComponent implements OnInit {
-  constructor(private dialog: MatDialog) {}
+  get title(){
+    return this.data.title;
+  }
+  constructor(private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) private data: any) {}
 
   ngOnInit() {}
 

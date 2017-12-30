@@ -4,7 +4,7 @@
 
 <mat-dialog-content class="post-form">
   <mat-form-field>
-    <input matInput placeholder="標題" />
+    <input matInput placeholder="標題" [(ngModel)]="title" />
   </mat-form-field>
   <mat-form-field>
       <textarea matInput placeholder="文章內容" rows="3"></textarea>
