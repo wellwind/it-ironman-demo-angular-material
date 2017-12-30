@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AddPostDialogComponent } from './add-post-dialog/add-post-dialog.component';
 
 @Component({
@@ -25,6 +25,15 @@ export class BlogComponent implements OnInit {
         return posts.slice(0, 6);
       })
       .delay(1500);
+
+    this.dialog.afterAllClosed.subscribe(() => {
+      console.log('目前已經沒有dialog了');
+    });
+
+    this.dialog.afterOpen.subscribe((dialogRef: MatDialogRef<any>) => {
+      console.log(`新的dialog已開啟：${dialogRef.id}`);
+      console.log(`目前已開啟 ${this.dialog.openDialogs.length} 個dialog了`);
+    });
   }
 
   showAddPostDialog() {
