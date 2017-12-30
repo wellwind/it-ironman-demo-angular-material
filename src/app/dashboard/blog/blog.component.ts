@@ -37,6 +37,8 @@ export class BlogComponent implements OnInit {
   }
 
   showAddPostDialog() {
-    this.dialog.open(AddPostDialogComponent);
+    this.dialog.open(AddPostDialogComponent, {
+      hasBackdrop: false
+    });
   }
 }
