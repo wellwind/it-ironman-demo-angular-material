@@ -8,7 +8,7 @@ import { AfterPostNotifyComponent } from '../after-post-notify/after-post-notify
   styleUrls: ['./add-post-confirm-dialog.component.css']
 })
 export class AddPostConfirmDialogComponent implements OnInit {
-  get title(){
+  get title() {
     return this.data.title;
   }
   constructor(private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) private data: any, private snackBar: MatSnackBar) {}
@@ -17,7 +17,10 @@ export class AddPostConfirmDialogComponent implements OnInit {
 
   confirm() {
     this.dialog.closeAll();
-    this.snackBar.open('已新增部落格文章', '我知道了');
-    this.snackBar.openFromComponent(AfterPostNotifyComponent);
+    this.snackBar.openFromComponent(AfterPostNotifyComponent, {
+      data: { title: this.title },
+      horizontalPosition: 'left',
+      verticalPosition: 'bottom'
+    });
   }
 }

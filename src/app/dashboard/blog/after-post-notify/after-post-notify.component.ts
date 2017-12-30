@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatSnackBar, MAT_SNACK_BAR_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-after-post-notify',
@@ -7,7 +7,10 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./after-post-notify.component.css']
 })
 export class AfterPostNotifyComponent implements OnInit {
-  constructor(private snackBar: MatSnackBar) {}
+  get title() {
+    return this.snackBarData.title;
+  }
+  constructor(private snackBar: MatSnackBar, @Inject(MAT_SNACK_BAR_DATA) private snackBarData: any) {}
 
   ngOnInit() {}
 
