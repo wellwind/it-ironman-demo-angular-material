@@ -9,13 +9,16 @@
   <mat-form-field>
     <textarea matInput placeholder="文章內容" rows="3"></textarea>
   </mat-form-field>
-  <h4>文章標籤</h4>
-  <mat-chip-list>
-    <mat-chip color="primary" selected="true">JavaScript</mat-chip>
-    <mat-chip color="accent" selected="true">Material Design</mat-chip>
-    <mat-chip color="warn" selected="true">Angular Material</mat-chip>
-    <mat-basic-chip>HTML</mat-basic-chip>
-  </mat-chip-list>
+  <mat-form-field>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of tags" (remove)="removeTag(tag)">
+        {{ tag }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <input placeholder="文章標籤" [matChipInputFor]="chipList" matChipInputAddOnBlur="true" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addTag($event)" />
+  </mat-form-field>
   <p>條款01</p>
   <p>條款02</p>
   <p>條款03</p>
