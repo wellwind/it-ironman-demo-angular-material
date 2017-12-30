@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AddPostConfirmDialogComponent } from '../add-post-confirm-dialog/add-post-confirm-dialog.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { AddPostConfirmDialogComponent } from '../add-post-confirm-dialog/add-po
 })
 export class AddPostDialogComponent implements OnInit {
   title: string;
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialogRef: MatDialogRef<AddPostDialogComponent>, private dialog: MatDialog) {}
 
   ngOnInit() {}
 
@@ -18,6 +18,13 @@ export class AddPostDialogComponent implements OnInit {
       data: {
         title: this.title
       }
+    });
+  }
+
+  move() {
+    this.dialogRef.updatePosition({
+      top: '0',
+      left: '0'
     });
   }
 }
