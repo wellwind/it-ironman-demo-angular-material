@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { AfterPostNotifyComponent } from '../after-post-notify/after-post-notify.component';
 
 @Component({
   selector: 'app-add-post-confirm-dialog',
@@ -16,5 +17,6 @@ export class AddPostConfirmDialogComponent implements OnInit {
 
   confirm() {
     this.dialog.closeAll();
+    this.snackBar.openFromComponent(AfterPostNotifyComponent);
   }
 }

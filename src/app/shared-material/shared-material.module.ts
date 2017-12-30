@@ -28,7 +28,8 @@ import {
   MatProgressSpinnerModule,
   MatDialogModule,
   MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -72,7 +73,8 @@ export const TW_FORMATS = {
     MatProgressSpinnerModule,
     MatDialogModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'zh-TW' },
