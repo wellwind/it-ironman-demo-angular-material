@@ -37,6 +37,9 @@ export class SurveyComponent implements OnInit {
   countries$: Observable<any[]>;
 
   majorTechList: any[];
+  interestList: any[];
+  nestInterestList: any[];
+
   constructor(private httpClient: HttpClient) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
@@ -44,7 +47,8 @@ export class SurveyComponent implements OnInit {
         intro: new FormControl('', [Validators.required, Validators.minLength(10)]),
         country: new FormControl(''),
         majorTech: new FormControl(''),
-        birthday: new FormControl({ value: '', disabled: true})
+        birthday: new FormControl({ value: '', disabled: true }),
+        interest: new FormControl(null)
       })
     });
   }
@@ -68,6 +72,56 @@ export class SurveyComponent implements OnInit {
       {
         name: '後端',
         items: ['C#', 'NodeJs', 'Go']
+      }
+    ];
+
+    this.interestList = [
+      {
+        id: 1,
+        name: '桌球'
+      },
+      {
+        id: 2,
+        name: '網球'
+      },
+      {
+        id: 3,
+        name: '羽球'
+      }
+    ];
+
+    this.nestInterestList = [
+      {
+        id: 1,
+        name: '球類',
+        subItems: [
+          {
+            id: 11,
+            name: '桌球'
+          },
+          {
+            id: 12,
+            name: '網球'
+          },
+          {
+            id: 13,
+            name: '羽球'
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: '其他',
+        subItems: [
+          {
+            id: 21,
+            name: '游泳'
+          },
+          {
+            id: 22,
+            name: '跑步'
+          }
+        ]
       }
     ];
   }

@@ -54,6 +54,20 @@
         <button mat-raised-button (click)="demoDatepicker.opened = true">打開Datepicker</button>
       </div>
       <div>
+        <mat-form-field>
+          <mat-select formControlName="interest" #selectInterest placeholder="你的休閒愛好?" multiple disableRipple panelClass="blue-dropdown">
+            <mat-select-trigger>
+              共選擇了 {{ selectInterest.selected.length }} 項興趣
+            </mat-select-trigger>
+            <mat-optgroup *ngFor="let parent of nestInterestList; let index = index" [label]="parent.name" [disabled]="index===1">
+              <mat-option *ngFor="let child of parent.subItems" [value]="child.id">{{ child.name }}</mat-option>
+            </mat-optgroup>
+            <!-- <mat-option [value]="undefined">無</mat-option>
+            <mat-option *ngFor="let item of interestList; let index = index" [value]="item.id" [disabled]="index === 1">{{ item.name }}</mat-option> -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
         <button mat-button matStepperNext>前進到「詳細問題」</button>
       </div>
 
