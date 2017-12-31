@@ -67,10 +67,18 @@
     <p>目前的selectedIndex: {{ tabIndex }}</p>
     <mat-tab-group [(selectedIndex)]="tabIndex" (focusChange)="tabFocusChange($event)" (selectedIndexChange)="tabSelectedIndexChange($event)"
       (selectedTabChange)="tabSelectedTabChange($event)">
-      <mat-tab label="郵件列表">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>inbox</mat-icon>
+          郵件列表
+        </ng-template>
         郵件列表清單
       </mat-tab>
-      <mat-tab label="系統設定">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>settings</mat-icon>
+          系統設定
+        </ng-template>
         系統設定表單
       </mat-tab>
       <mat-tab label="其他">
