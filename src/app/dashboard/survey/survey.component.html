@@ -6,17 +6,27 @@
         <u>個人資訊</u>
       </ng-template>
       <h4>提供個人資訊</h4>
-      <mat-form-field>
-        <input name="name" matInput placeholder="姓名" formControlName="name" required>
-      </mat-form-field>
       <div>
-        <mat-form-field>
+        <mat-form-field floatLabel="auto" [hideRequiredMarker]="true" hintLabel="最多輸入5個字">
+          <input name="name" matInput formControlName="name" maxlength="5" required>
+          <mat-placeholder>
+            <mat-icon>person</mat-icon>請輸入您的姓名
+          </mat-placeholder>
+          <mat-hint align="end">
+            已輸入： {{ surveyForm.get('basicQuestions')?.get('name')?.value?.length || 0 }} / 5
+          </mat-hint>
+          <mat-error>姓名欄位有錯誤</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field floatLabel="never" color="accent">
           <input type="text" name="nickname" matInput placeholder="暱稱" />
         </mat-form-field>
       </div>
       <div>
         <mat-form-field>
           <input type="text" name="country" matInput placeholder="國家" formControlName="country" [matAutocomplete]="countries" />
+          <mat-icon></mat-icon>
         </mat-form-field>
         <mat-autocomplete #countries="matAutocomplete">
           <mat-option *ngFor="let country of countries$ | async" [value]="country.name">
@@ -78,6 +88,14 @@
         <em>詳細問題</em>
       </ng-template>
       <h4>主要的問題內容</h4>
+      <div>
+        <mat-form-field>
+          <input type="number" matInput placeholder="請問您的平均日常消費？">
+          <!-- 不管是mat-icon還是什麼，只要加入matPrefix或matSuffix，就會幫你放到對的位置 -->
+          <mat-icon matPrefix>attach_money</mat-icon>
+          <span matSuffix>新台幣</span>
+        </mat-form-field>
+      </div>
       <button mat-button matStepperPrevious>回進到「個人資訊」</button>
       <button mat-button matStepperNext>前進到「其他」</button>
     </mat-step>

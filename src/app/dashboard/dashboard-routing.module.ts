@@ -8,7 +8,11 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    children: [{ path: 'main', component: MainComponent }, { path: 'survey', component: SurveyComponent }]
+    children: [
+      { path: '', redirectTo: 'survey' , pathMatch: 'full'},
+      { path: 'main', component: MainComponent },
+      { path: 'survey', component: SurveyComponent }
+    ]
   }
 ];
 
