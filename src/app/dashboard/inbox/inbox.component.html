@@ -65,7 +65,8 @@
     <button mat-button (click)="tabIndex = tabIndex - 1">上一頁</button>
     <button mat-button (click)="tabIndex = tabIndex + 1">下一頁</button>
     <p>目前的selectedIndex: {{ tabIndex }}</p>
-    <mat-tab-group [(selectedIndex)]="tabIndex">
+    <mat-tab-group [(selectedIndex)]="tabIndex" (focusChange)="tabFocusChange($event)" (selectedIndexChange)="tabSelectedIndexChange($event)"
+      (selectedTabChange)="tabSelectedTabChange($event)">
       <mat-tab label="郵件列表">
         郵件列表清單
       </mat-tab>
