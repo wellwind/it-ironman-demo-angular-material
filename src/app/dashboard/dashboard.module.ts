@@ -10,6 +10,7 @@ import { BlogComponent } from './blog/blog.component';
 import { AddPostDialogComponent } from './blog/add-post-dialog/add-post-dialog.component';
 import { AddPostConfirmDialogComponent } from './blog/add-post-confirm-dialog/add-post-confirm-dialog.component';
 import { AfterPostNotifyComponent } from './blog/after-post-notify/after-post-notify.component';
+import { InboxComponent } from './inbox/inbox.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, DashboardRoutingModule, SharedMaterialModule],
@@ -20,7 +21,8 @@ import { AfterPostNotifyComponent } from './blog/after-post-notify/after-post-no
     BlogComponent,
     AddPostDialogComponent,
     AddPostConfirmDialogComponent,
-    AfterPostNotifyComponent
+    AfterPostNotifyComponent,
+    InboxComponent
   ],
   exports: [DashboardComponent],
   entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent]
