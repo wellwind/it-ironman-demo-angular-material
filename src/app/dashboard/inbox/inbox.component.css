@@ -9,5 +9,6 @@
 
 .main {
   flex: 1;
+  width: calc(100vw - 300px);
   padding: 5px;
 }
