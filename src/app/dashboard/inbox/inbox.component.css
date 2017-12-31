@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+}
+
+.aside {
+  width: 300px;
+  padding: 5px;
+}
+
+.main {
+  flex: 1;
+  padding: 5px;
+}

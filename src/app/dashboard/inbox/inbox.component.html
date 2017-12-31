@@ -1,3 +1,62 @@
-<p>
-  inbox works!
-</p>
+<div class="container">
+  <section class="aside">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>inbox</mat-icon>
+          收件夾
+        </mat-panel-title>
+        <mat-panel-description>
+          3 封未讀
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon>folder</mat-icon>
+          Angular
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>folder</mat-icon>
+          JavaSCript
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>folder</mat-icon>
+          HTML
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>person</mat-icon>
+          聯絡人列表
+        </mat-panel-title>
+        <mat-panel-description>
+          2 人在線上
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <mat-list-item>
+          <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Lin_Chi-Ling_%28cropped%29.jpg" />
+          <p matLine>志玲</p>
+          <button mat-icon-button>
+            <mat-icon>email</mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-icon-button>
+            <mat-icon>email</mat-icon>
+          </button>
+          <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/2008TIBE_Day4_Hall1_Cit%C3%A9Group_TheyKissAgain_SigningEvent_Ariel_Yi-cheng_Lin.jpg/440px-2008TIBE_Day4_Hall1_Cit%C3%A9Group_TheyKissAgain_SigningEvent_Ariel_Yi-cheng_Lin.jpg"
+          />
+          <p matLine>依晨</p>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-expansion-panel>
+  </section>
+  <section class="main">
+    Main
+  </section>
+</div>
