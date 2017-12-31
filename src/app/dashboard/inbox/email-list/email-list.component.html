@@ -1,3 +1,6 @@
+<mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]">
+</mat-paginator>
+
 <mat-table [dataSource]="emailsDataSource">
   <ng-container matColumnDef="user">
     <mat-header-cell *matHeaderCellDef>寄件人</mat-header-cell>
