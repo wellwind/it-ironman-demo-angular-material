@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
-
+  tabIndex = 0;
   constructor() { }
 
   ngOnInit() {
