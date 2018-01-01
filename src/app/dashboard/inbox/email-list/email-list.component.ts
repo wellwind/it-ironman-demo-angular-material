@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort, MatPaginatorIntl } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -21,7 +21,7 @@ export class EmailListComponent implements OnInit {
   currentFilterData: string;
   emailsDataSource = new MatTableDataSource<any>();
   totalCount: number;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private matPaginatorIntl: MatPaginatorIntl) {}
 
   ngOnInit() {
     this.currentPage = {
@@ -56,6 +56,22 @@ export class EmailListComponent implements OnInit {
     // this.emailsDataSource.filterPredicate = (data: any, filter: string): boolean => {
     //   return data.title.indexOf(filter) !== -1;
     // };
+
+    this.matPaginatorIntl.getRangeLabel = (page: number, pageSize: number, length: number): string => {
+      if (length === 0 || pageSize === 0) {
+        return `第 0 筆、共 ${length} 筆`;
+      }
+
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+
+      return `第 ${startIndex + 1} - ${endIndex} 筆、共 ${length} 筆`;
+    };
+
+    this.matPaginatorIntl.itemsPerPageLabel = '每頁筆數：';
+    this.matPaginatorIntl.nextPageLabel = '下一頁';
+    this.matPaginatorIntl.previousPageLabel = '上一頁';
   }
 
   changeSort(sortInfo: Sort) {
