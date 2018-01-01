@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
   selector: 'app-email-list',
@@ -10,6 +14,7 @@ import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort } from '@ang
 export class EmailListComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild('sortTable') sortTable: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
   currentPage: PageEvent;
   currentSort: Sort;
@@ -34,6 +39,13 @@ export class EmailListComponent implements OnInit {
       this.currentPage = page;
       this.getIssuees();
     });
+
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        this.emailsDataSource.filter = (this.filter.nativeElement as HTMLInputElement).value;
+      });
   }
 
   changeSort(sortInfo: Sort) {
@@ -50,16 +62,14 @@ export class EmailListComponent implements OnInit {
     if (this.currentSort.direction) {
       targetUrl = `${targetUrl}&&sort=${this.currentSort.active}&order=${this.currentSort.direction}`;
     }
-    this.httpClient
-      .get<any>(targetUrl)
-      .subscribe(data => {
-        this.totalCount = data.total_count;
-        this.emailsDataSource.data = data.items;
-        // 從後端進行排序時，不用指定sort
-        // this.emailsDataSource.sort = this.sortTable;
-        // 從後端取得資料時，就不用指定data srouce的paginator了
-        // this.emailsDataSource.paginator = this.paginator;
-      });
+    this.httpClient.get<any>(targetUrl).subscribe(data => {
+      this.totalCount = data.total_count;
+      this.emailsDataSource.data = data.items;
+      // 從後端進行排序時，不用指定sort
+      // this.emailsDataSource.sort = this.sortTable;
+      // 從後端取得資料時，就不用指定data srouce的paginator了
+      // this.emailsDataSource.paginator = this.paginator;
+    });
   }
 
   reply(emailRow) {
