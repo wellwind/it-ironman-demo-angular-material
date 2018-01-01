@@ -13,7 +13,7 @@
     <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="created_at">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>日期</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before" disableClear="true" start="desc">日期</mat-header-cell>
     <mat-cell *matCellDef="let row">{{ row.created_at }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="management">
