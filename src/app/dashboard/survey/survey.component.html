@@ -83,7 +83,7 @@
 
     </mat-step>
     <!-- 這個step無法被切回來 -->
-    <mat-step editable="false">
+    <mat-step editable="false" formGroupName="mainQuestions" [stepControl]="surveyForm.get('mainQuestions')">
       <ng-template matStepLabel>
         <em>詳細問題</em>
       </ng-template>
@@ -95,6 +95,45 @@
           <mat-icon matPrefix>attach_money</mat-icon>
           <span matSuffix>新台幣</span>
         </mat-form-field>
+      </div>
+      <div>
+        <div>除了生活消費外，你最常花費在哪些項目上？</div>
+        <mat-checkbox formControlName="payForAll" [indeterminate]="indeterminateSelectedPayFor" (change)="checkAllChange($event)">全部</mat-checkbox>
+        <mat-checkbox formControlName="payForBook" (change)="payForChange()" color="primary">書籍</mat-checkbox>
+        <mat-checkbox formControlName="payForMusic" (change)="payForChange()" color="accent">音樂</mat-checkbox>
+        <mat-checkbox formControlName="payForMovie" (change)="payForChange()" color="warn">電影</mat-checkbox>
+      </div>
+      <div>
+        <div>對於Angular，你的評價是？</div>
+        <mat-radio-group formControlName="angularMaterialLikeScore" labelPosition="before">
+          <mat-radio-button [value]="1">超討厭</mat-radio-button>
+          <mat-radio-button [value]="2">討厭</mat-radio-button>
+          <mat-radio-button [value]="3">普通</mat-radio-button>
+          <mat-radio-button [value]="4">喜歡</mat-radio-button>
+          <mat-radio-button [value]="5" labelPosition="after">超喜歡</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <div>對於Angular Material，你的評價是？</div>
+        <mat-radio-group formControlName="angularMaterialLikeScore">
+          <mat-radio-button [value]="1" color="primary">超討厭</mat-radio-button>
+          <mat-radio-button [value]="2" color="accent">討厭</mat-radio-button>
+          <mat-radio-button [value]="3" color="warn">普通</mat-radio-button>
+          <mat-radio-button [value]="4">喜歡</mat-radio-button>
+          <mat-radio-button [value]="5">超喜歡</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div>
+        <div>訂閱電子報</div>
+        <div>
+          <mat-slide-toggle formControlName="subscribeAngular" color="primary">Angular技巧全集</mat-slide-toggle>
+        </div>
+        <div>
+          <mat-slide-toggle formControlName="subscribeAngularMaterial" color="accent">Angular Material全攻略</mat-slide-toggle>
+        </div>
+        <div>
+          <mat-slide-toggle formControlName="subscribeNgRx" color="warn">NgRx入門班</mat-slide-toggle>
+        </div>
       </div>
       <button mat-button matStepperPrevious>回進到「個人資訊」</button>
       <button mat-button matStepperNext>前進到「其他」</button>
