@@ -46,6 +46,10 @@ export class EmailListComponent implements OnInit {
       .subscribe(() => {
         this.emailsDataSource.filter = (this.filter.nativeElement as HTMLInputElement).value;
       });
+
+    this.emailsDataSource.filterPredicate = (data: any, filter: string): boolean => {
+      return data.title.indexOf(filter) !== -1;
+    };
   }
 
   changeSort(sortInfo: Sort) {
