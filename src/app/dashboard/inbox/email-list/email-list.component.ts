@@ -62,7 +62,7 @@ export class EmailListComponent implements OnInit {
       });
   }
 
-  replay(emailRow) {
+  reply(emailRow) {
     console.log('回覆信件', emailRow);
   }
 
