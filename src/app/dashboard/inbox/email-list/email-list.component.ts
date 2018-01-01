@@ -18,6 +18,7 @@ export class EmailListComponent implements OnInit {
 
   currentPage: PageEvent;
   currentSort: Sort;
+  currentFilterData: string;
   emailsDataSource = new MatTableDataSource<any>();
   totalCount: number;
   constructor(private httpClient: HttpClient) {}
@@ -44,12 +45,17 @@ export class EmailListComponent implements OnInit {
       .debounceTime(300)
       .distinctUntilChanged()
       .subscribe(() => {
-        this.emailsDataSource.filter = (this.filter.nativeElement as HTMLInputElement).value;
+        // 準備要提供給API的filter資料
+        this.currentFilterData = (this.filter.nativeElement as HTMLInputElement).value;
+        this.getIssuees();
+        // 後端篩選就不需要指定filter了
+        // this.emailsDataSource.filter = (this.filter.nativeElement as HTMLInputElement).value;
       });
 
-    this.emailsDataSource.filterPredicate = (data: any, filter: string): boolean => {
-      return data.title.indexOf(filter) !== -1;
-    };
+    // 後端篩選就用不到filterPredicate了
+    // this.emailsDataSource.filterPredicate = (data: any, filter: string): boolean => {
+    //   return data.title.indexOf(filter) !== -1;
+    // };
   }
 
   changeSort(sortInfo: Sort) {
@@ -64,7 +70,10 @@ export class EmailListComponent implements OnInit {
     const baseUrl = 'https://api.github.com/search/issues?q=repo:angular/material2';
     let targetUrl = `${baseUrl}&page=${this.currentPage.pageIndex + 1}&per_page=${this.currentPage.pageSize}`;
     if (this.currentSort.direction) {
-      targetUrl = `${targetUrl}&&sort=${this.currentSort.active}&order=${this.currentSort.direction}`;
+      targetUrl = `${targetUrl}&sort=${this.currentSort.active}&order=${this.currentSort.direction}`;
+    }
+    if (this.currentFilterData) {
+      targetUrl = `${targetUrl}&q=${this.currentFilterData}+in:title`;
     }
     this.httpClient.get<any>(targetUrl).subscribe(data => {
       this.totalCount = data.total_count;
