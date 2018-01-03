@@ -37,6 +37,7 @@ import {
   MatPaginatorModule
 } from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { A11yModule } from '@angular/cdk/a11y';
 
 export const TW_FORMATS = {
   parse: {
@@ -84,11 +85,9 @@ export const TW_FORMATS = {
     MatTabsModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    A11yModule
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'zh-TW' },
-    { provide: MAT_DATE_FORMATS, useValue: TW_FORMATS }
-  ]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'zh-TW' }, { provide: MAT_DATE_FORMATS, useValue: TW_FORMATS }]
 })
 export class SharedMaterialModule {}
