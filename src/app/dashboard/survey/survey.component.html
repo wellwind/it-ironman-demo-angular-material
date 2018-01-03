@@ -8,7 +8,7 @@
       <h4>提供個人資訊</h4>
       <div>
         <mat-form-field floatLabel="auto" [hideRequiredMarker]="true" hintLabel="最多輸入5個字">
-          <input name="name" matInput formControlName="name" maxlength="5" required>
+          <input name="name" matInput formControlName="name" maxlength="5" required appSurveyInput>
           <mat-placeholder>
             <mat-icon>person</mat-icon>請輸入您的姓名
           </mat-placeholder>
@@ -20,12 +20,12 @@
       </div>
       <div>
         <mat-form-field floatLabel="never" color="accent">
-          <input type="text" name="nickname" matInput placeholder="暱稱" />
+          <input type="text" name="nickname" matInput placeholder="暱稱" appSurveyInput/>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field>
-          <input type="text" name="country" matInput placeholder="國家" formControlName="country" [matAutocomplete]="countries" />
+          <input type="text" name="country" matInput placeholder="國家" formControlName="country" [matAutocomplete]="countries" appSurveyInput/>
           <mat-icon></mat-icon>
         </mat-form-field>
         <mat-autocomplete #countries="matAutocomplete">
@@ -37,7 +37,7 @@
       <div>
         <mat-form-field>
           <input type="text" name="majorTech" matInput placeholder="代表技術" formControlName="majorTech" [matAutocomplete]="majorTechs"
-          />
+            appSurveyInput/>
         </mat-form-field>
         <mat-autocomplete #majorTechs="matAutocomplete">
           <mat-optgroup *ngFor="let techList of majorTechList" [label]="techList.name">
@@ -49,7 +49,7 @@
       </div>
       <div>
         <mat-form-field>
-          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required matTextareaAutosize></textarea>
+          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required matTextareaAutosize appSurveyInput></textarea>
           <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('required')">請記得輸入自我介紹喔！</mat-error>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('minlength')">至少輸入10個字吧！</mat-error>
@@ -58,14 +58,15 @@
       <div>
         <mat-form-field>
           <input type="text" name="birthday" matInput (dateInput)="logDateInput($event)" (dateChange)="logDateChange($event)" placeholder="生日"
-            [matDatepicker]="demoDatepicker" formControlName="birthday" />
+            [matDatepicker]="demoDatepicker" formControlName="birthday" appSurveyInput/>
           <mat-datepicker #demoDatepicker [startAt]="startDate" disabled="false" touchUi="true"></mat-datepicker>
         </mat-form-field>
         <button mat-raised-button (click)="demoDatepicker.opened = true">打開Datepicker</button>
       </div>
       <div>
         <mat-form-field>
-          <mat-select formControlName="interest" #selectInterest placeholder="你的休閒愛好?" multiple disableRipple panelClass="blue-dropdown">
+          <mat-select formControlName="interest" #selectInterest placeholder="你的休閒愛好?" multiple disableRipple panelClass="blue-dropdown"
+            appSurveyInput>
             <mat-select-trigger>
               共選擇了 {{ selectInterest.selected.length }} 項興趣
             </mat-select-trigger>
@@ -141,28 +142,28 @@
     <mat-step label="其他" formGroupName="otherQuestions" [stepControl]="surveyForm.get('otherQuestions')">
       <h4>其他問題</h4>
       <section>
-      <div>
-        選擇你最喜歡的顏色
-      </div>
-      <div>
-        <span>Red</span>
-        <mat-slider formControlName="favoriteColorRed" min="0" max="255" step="1" vertical></mat-slider>
-      </div>
-      <div>
-        <span>Green</span>
-        <mat-slider formControlName="favoriteColorGreen" min="0" max="255" step="1" invert></mat-slider>
-      </div>
-      <div>
-        <span>Blue</span>
-        <mat-slider formControlName="favoriteColorBlue" min="0" max="255" step="1"></mat-slider>
-      </div>
-      <div>RGB: ({{ selectedColorRed }}, {{ selectedColorGreen }}, {{ selectedColorBlue }})</div>
-      <div style="width: 50px; height: 50px; border: 1px solid #000" [ngStyle]="{background: selectedColorStyle}"></div>
-    </section>
-    <section>
-      <div>關於這個問卷你覺得設計得如何？</div>
-      <mat-slider formControlName="surveyScore" min="0" max="100" step="5" thumbLabel [tickInterval]="2"></mat-slider>
-    </section>
+        <div>
+          選擇你最喜歡的顏色
+        </div>
+        <div>
+          <span>Red</span>
+          <mat-slider formControlName="favoriteColorRed" min="0" max="255" step="1" vertical></mat-slider>
+        </div>
+        <div>
+          <span>Green</span>
+          <mat-slider formControlName="favoriteColorGreen" min="0" max="255" step="1" invert></mat-slider>
+        </div>
+        <div>
+          <span>Blue</span>
+          <mat-slider formControlName="favoriteColorBlue" min="0" max="255" step="1"></mat-slider>
+        </div>
+        <div>RGB: ({{ selectedColorRed }}, {{ selectedColorGreen }}, {{ selectedColorBlue }})</div>
+        <div style="width: 50px; height: 50px; border: 1px solid #000" [ngStyle]="{background: selectedColorStyle}"></div>
+      </section>
+      <section>
+        <div>關於這個問卷你覺得設計得如何？</div>
+        <mat-slider formControlName="surveyScore" min="0" max="100" step="5" thumbLabel [tickInterval]="2"></mat-slider>
+      </section>
       <button mat-button matStepperPrevious>回進到「詳細問題」</button>
     </mat-step>
   </mat-vertical-stepper>
