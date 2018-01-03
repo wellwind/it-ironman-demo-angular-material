@@ -36,8 +36,7 @@
       </div>
       <div>
         <mat-form-field>
-          <input type="text" name="majorTech" matInput placeholder="代表技術" formControlName="majorTech" [matAutocomplete]="majorTechs"
-            appSurveyInput/>
+          <input type="text" name="majorTech" matInput placeholder="代表技術" formControlName="majorTech" [matAutocomplete]="majorTechs"/>
         </mat-form-field>
         <mat-autocomplete #majorTechs="matAutocomplete">
           <mat-optgroup *ngFor="let techList of majorTechList" [label]="techList.name">
@@ -49,7 +48,7 @@
       </div>
       <div>
         <mat-form-field>
-          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required matTextareaAutosize appSurveyInput></textarea>
+          <textarea name="intro_self" matInput placeholder="自我介紹" formControlName="intro" required matTextareaAutosize></textarea>
           <mat-hint>簡單介紹一下你的興趣吧！</mat-hint>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('required')">請記得輸入自我介紹喔！</mat-error>
           <mat-error *ngIf="surveyForm.get('basicQuestions').get('intro').hasError('minlength')">至少輸入10個字吧！</mat-error>
@@ -58,15 +57,14 @@
       <div>
         <mat-form-field>
           <input type="text" name="birthday" matInput (dateInput)="logDateInput($event)" (dateChange)="logDateChange($event)" placeholder="生日"
-            [matDatepicker]="demoDatepicker" formControlName="birthday" appSurveyInput/>
+            [matDatepicker]="demoDatepicker" formControlName="birthday"/>
           <mat-datepicker #demoDatepicker [startAt]="startDate" disabled="false" touchUi="true"></mat-datepicker>
         </mat-form-field>
         <button mat-raised-button (click)="demoDatepicker.opened = true">打開Datepicker</button>
       </div>
       <div>
         <mat-form-field>
-          <mat-select formControlName="interest" #selectInterest placeholder="你的休閒愛好?" multiple disableRipple panelClass="blue-dropdown"
-            appSurveyInput>
+          <mat-select formControlName="interest" #selectInterest placeholder="你的休閒愛好?" multiple disableRipple panelClass="blue-dropdown">
             <mat-select-trigger>
               共選擇了 {{ selectInterest.selected.length }} 項興趣
             </mat-select-trigger>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, ValidatorFn, Validators, FormGroupDirective, NgForm } from '@angular/forms';
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, HostListener } from '@angular/core';
 import {
   MatStepperIntl,
   ErrorStateMatcher,
@@ -16,7 +16,7 @@ import * as moment from 'moment';
 import { SurveyInputDirective } from './survey-input.directive';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { ESCAPE, LEFT_ARROW, RIGHT_ARROW, ENTER } from '@angular/cdk/keycodes';
+import { UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -44,6 +44,7 @@ export class EarlyErrorStateMatcher implements ErrorStateMatcher {
 export class SurveyComponent implements OnInit, AfterViewInit {
   @ViewChildren(SurveyInputDirective) surveyInputs: QueryList<SurveyInputDirective>;
   keyManager: FocusKeyManager<SurveyInputDirective>;
+
   startDate = moment('1999-1-10');
   minDate = moment('1999-1-5');
   maxDate = moment('1999-1-15');
@@ -59,6 +60,16 @@ export class SurveyComponent implements OnInit, AfterViewInit {
   nestInterestList: any[];
 
   indeterminateSelectedPayFor: boolean;
+
+  @HostListener('keydown', ['$event'])
+  keydown($event: KeyboardEvent) {
+    // 監聽鍵盤事件並依照案件設定按鈕focus狀態
+    if ($event.keyCode === UP_ARROW) {
+      this.keyManager.setPreviousItemActive();
+    } else if ($event.keyCode === DOWN_ARROW) {
+      this.keyManager.setNextItemActive();
+    }
+  }
 
   get selectedColorRed() {
     return this.surveyForm.get('otherQuestions').get('favoriteColorRed').value;
@@ -182,7 +193,7 @@ export class SurveyComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.keyManager = new FocusKeyManager(this.surveyInputs);
+    this.keyManager = new FocusKeyManager(this.surveyInputs).withWrap();
     this.keyManager.setActiveItem(0);
   }
 
