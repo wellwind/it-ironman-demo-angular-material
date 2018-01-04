@@ -13,6 +13,7 @@ import { AfterPostNotifyComponent } from './blog/after-post-notify/after-post-no
 import { InboxComponent } from './inbox/inbox.component';
 import { EmailListComponent } from './inbox/email-list/email-list.component';
 import { SurveyInputDirective } from './survey/survey-input.directive';
+import { BidiTestComponent } from './main/bidi-test/bidi-test.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, DashboardRoutingModule, SharedMaterialModule],
@@ -26,7 +27,8 @@ import { SurveyInputDirective } from './survey/survey-input.directive';
     AfterPostNotifyComponent,
     InboxComponent,
     EmailListComponent,
-    SurveyInputDirective
+    SurveyInputDirective,
+    BidiTestComponent
   ],
   exports: [DashboardComponent],
   entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent]
