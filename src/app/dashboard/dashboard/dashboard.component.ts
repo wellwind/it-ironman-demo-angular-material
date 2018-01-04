@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
+import { Direction } from '@angular/cdk/bidi';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,7 @@ import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  bidiMode = 'ltr';
   constructor() {}
 
   ngOnInit() {}
@@ -24,5 +26,9 @@ export class DashboardComponent implements OnInit {
 
   closed() {
     console.log('芝麻關門');
+  }
+
+  logDirChange($event: Direction) {
+    console.log(`dir被改變了 => ${$event}`);
   }
 }
