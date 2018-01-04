@@ -58,7 +58,7 @@
         <mat-form-field>
           <input type="text" name="birthday" matInput (dateInput)="logDateInput($event)" (dateChange)="logDateChange($event)" placeholder="生日"
             [matDatepicker]="demoDatepicker" formControlName="birthday"/>
-          <mat-datepicker #demoDatepicker [startAt]="startDate" disabled="false" touchUi="true"></mat-datepicker>
+          <mat-datepicker #demoDatepicker [startAt]="startDate" disabled="false" [touchUi]="(isHandeset$ | async)"></mat-datepicker>
         </mat-form-field>
         <button mat-raised-button (click)="demoDatepicker.opened = true">打開Datepicker</button>
       </div>
