@@ -2,7 +2,7 @@
   <mat-grid-tile style="background: red" colspan="2">
     Tile 1(橫幅廣告)
   </mat-grid-tile>
-  <mat-grid-tile style="background: green" rowspan="22">
+  <mat-grid-tile rowspan="22">
     <mat-grid-tile-header>
       <h3 mat-line>功能清單</h3>
       <span mat-line>選擇你要的</span>
@@ -15,54 +15,111 @@
       <span mat-line>但我不想死</span>
       <mat-icon>thumb_up</mat-icon>
     </mat-grid-tile-footer>
-    Tile 2(右邊清單資訊)
+
+    <div class="blog-sidebard-content">
+      <h4>
+        發文進度
+      </h4>
+      <mat-progress-bar [value]="progress"></mat-progress-bar>
+      <button mat-raised-button (click)="progress = progress - 10">-10</button>
+      <button mat-raised-button (click)="progress = progress + 10">+10</button>
+
+      <h4>Indeterminate Progress Bar</h4>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+      <h4>Buffer Progress Bar</h4>
+      <mat-progress-bar mode="buffer" value="30" bufferValue="60"></mat-progress-bar>
+
+      <h4>Query Progress Bar</h4>
+      <mat-progress-bar mode="query"></mat-progress-bar>
+
+      <h4>Primary</h4>
+      <mat-progress-bar mode="buffer" color="primary"></mat-progress-bar>
+
+      <h4>Accent</h4>
+      <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
+
+      <h4>Warn</h4>
+      <mat-progress-bar mode="buffer" color="warn"></mat-progress-bar>
+
+      <h4>Progress Spinner</h4>
+      <mat-progress-spinner [value]="progress"></mat-progress-spinner>
+      <button mat-raised-button (click)="progress = progress - 10">-10</button>
+      <button mat-raised-button (click)="progress = progress + 10">+10</button>
+
+      <h4>Indeterminate Progress Spinner</h4>
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+
+      <h4>Spinner Stroke Width</h4>
+      <mat-progress-spinner value="60" [strokeWidth]="strokeWidth"></mat-progress-spinner>
+      <button mat-raised-button (click)="strokeWidth = strokeWidth - 1">-1</button>
+      {{ strokeWidth }}
+      <button mat-raised-button (click)="strokeWidth = strokeWidth + 1">+1</button>
+
+      <h4>Spinner Stroke Width</h4>
+      <mat-progress-spinner value="60" [diameter]="diameter"></mat-progress-spinner>
+      <button mat-raised-button (click)="diameter = diameter - 10">-10</button>
+      {{ diameter }}
+      <button mat-raised-button (click)="diameter = diameter + 10">+10</button>
+
+      <h4>Very Small Spinner</h4>
+      <mat-spinner [diameter]="30" [strokeWidth]="1"></mat-spinner>
+    </div>
   </mat-grid-tile>
 
-  <mat-grid-tile rowspan="2">
-    <mat-card class="post-tile">
-      <mat-card-title-group>
-        <mat-card-title>置頂文章1</mat-card-title>
-        <mat-card-subtitle>2917/01/04</mat-card-subtitle>
-        <img mat-card-sm-image src="https://picsum.photos/300/300/?random" />
-      </mat-card-title-group>
-      <mat-card-content>文章內容1...</mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="paimray">繼續閱讀</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
+  <ng-template #loading>
+    <mat-grid-tile colspan="2">
+      <mat-spinner></mat-spinner>
+    </mat-grid-tile>
+  </ng-template>
 
-  <mat-grid-tile rowspan="2">
-    <mat-card class="post-tile">
-      <mat-card-title-group>
-        <mat-card-title>置頂文章2</mat-card-title>
-        <mat-card-subtitle>2917/01/04</mat-card-subtitle>
-        <img mat-card-sm-image src="https://picsum.photos/300/300/?random" />
-      </mat-card-title-group>
-      <mat-card-content>文章內容2...</mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="paimray">繼續閱讀</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
+  <ng-container *ngIf="posts$ | async as posts; else loading">
+    <mat-grid-tile rowspan="2">
+      <mat-card class="post-tile">
+        <mat-card-title-group>
+          <mat-card-title>置頂文章1</mat-card-title>
+          <mat-card-subtitle>2917/01/04</mat-card-subtitle>
+          <img mat-card-sm-image src="https://picsum.photos/300/300/?random" />
+        </mat-card-title-group>
+        <mat-card-content>文章內容1...</mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="paimray">繼續閱讀</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
 
-  <mat-grid-tile *ngFor="let post of posts$ | async; let index = index" rowspan="6">
-    <mat-card class="post-tile" [tabindex]="index">
-      <mat-card-header>
-        <mat-card-title>{{ post.title.substring(0, 15) }}...</mat-card-title>
-        <mat-card-subtitle>User Id: {{ post.userId }}</mat-card-subtitle>
-        <img mat-card-avatar src="https://picsum.photos/300/300/?random" />
-      </mat-card-header>
-      <img mat-card-image src="https://picsum.photos/300/300/?random" />
-      <mat-card-content>{{ post.body.substring(0, 100) }}...</mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="paimray">繼續閱讀</button>
-        <button mat-button color="accent">編輯</button>
-      </mat-card-actions>
-      <mat-card-footer>IT鐵人賽系列好文</mat-card-footer>
-    </mat-card>
-  </mat-grid-tile>
-
+    <mat-grid-tile rowspan="2">
+      <mat-card class="post-tile">
+        <mat-card-title-group>
+          <mat-card-title>置頂文章2</mat-card-title>
+          <mat-card-subtitle>2917/01/04</mat-card-subtitle>
+          <img mat-card-sm-image src="https://picsum.photos/300/300/?random" />
+        </mat-card-title-group>
+        <mat-card-content>文章內容2...</mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="paimray">繼續閱讀</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let post of posts; let index = index" rowspan="6">
+      <mat-card class="post-tile" [tabindex]="index">
+        <mat-card-header>
+          <mat-card-title>{{ post.title.substring(0, 15) }}...</mat-card-title>
+          <mat-card-subtitle>User Id: {{ post.userId }}</mat-card-subtitle>
+          <img mat-card-avatar src="https://picsum.photos/300/300/?random" />
+        </mat-card-header>
+        <img mat-card-image src="https://picsum.photos/300/300/?random" />
+        <mat-card-content>{{ post.body.substring(0, 100) }}...</mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="paimray">繼續閱讀</button>
+          <button mat-button color="accent">編輯</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+  </ng-container>
   <mat-grid-tile style="background: yellow" colspan="2">
     Tile 4(下方橫幅廣告)
   </mat-grid-tile>
