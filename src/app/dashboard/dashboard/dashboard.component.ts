@@ -35,8 +35,6 @@ export class DashboardComponent implements OnInit {
       console.log('發生scroll了，來源為：');
       console.log(scrollable.getElementRef());
     });
-
-    this.scrollDispatcher.ancestorScrolled(this._el)
   }
 
   toggleSideNav(sideNav: MatSidenav) {
