@@ -7,10 +7,13 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SurveyComponent } from './survey/survey.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BlogComponent } from './blog/blog.component';
+import { AddPostDialogComponent } from './blog/add-post-dialog/add-post-dialog.component';
+import { AddPostConfirmDialogComponent } from './blog/add-post-confirm-dialog/add-post-confirm-dialog.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, DashboardRoutingModule, SharedMaterialModule],
-  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent],
-  exports: [DashboardComponent]
+  declarations: [DashboardComponent, MainComponent, SurveyComponent, BlogComponent, AddPostDialogComponent, AddPostConfirmDialogComponent],
+  exports: [DashboardComponent],
+  entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent]
 })
 export class DashboardModule {}
