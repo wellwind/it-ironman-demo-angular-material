@@ -40,6 +40,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { A11yModule } from '@angular/cdk/a11y';
 import { BidiModule } from '@angular/cdk/bidi';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ObserversModule } from '@angular/cdk/observers';
 
 export const TW_FORMATS = {
   parse: {
@@ -90,7 +91,8 @@ export const TW_FORMATS = {
     MatPaginatorModule,
     A11yModule,
     BidiModule,
-    LayoutModule
+    LayoutModule,
+    ObserversModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'zh-TW' }, { provide: MAT_DATE_FORMATS, useValue: TW_FORMATS }]
 })
