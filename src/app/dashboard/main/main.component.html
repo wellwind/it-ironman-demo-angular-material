@@ -13,9 +13,9 @@
   </div>
 </div>
 
-<ng-template cdkPortal  let-nameInTemplate="nameInObject">
+<ng-template cdkPortal let-nameInTemplate="nameInObject">
   <p>
-      Hi，{{ nameInTemplate }}，功能1：我放在ng-template + cdkPortal = TemplatePortal裡面
+    Hi，{{ nameInTemplate }}，功能1：我放在ng-template + cdkPortal = TemplatePortal裡面
   </p>
 </ng-template>
 
@@ -215,3 +215,8 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+
+<div>
+  <button matButton (click)="createOutletOutOfApp()">使用DomPortalOutlet產生插座</button>
+  <button matButton (click)="addTemplatePortal()">插入內容</button>
+</div>
