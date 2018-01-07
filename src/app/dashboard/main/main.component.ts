@@ -1,7 +1,8 @@
 import { AfterViewChecked, Component, OnInit, ViewChild, ViewChildren, QueryList, TemplateRef, ViewContainerRef } from '@angular/core';
 import { MatIconRegistry, MatRipple } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Portal, CdkPortal, TemplatePortal } from '@angular/cdk/portal';
+import { Portal, CdkPortal, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
+import { Portal4Component } from './portal4/portal4.component';
 
 @Component({
   selector: 'app-main',
@@ -53,5 +54,8 @@ export class MainComponent implements OnInit {
   changePortal3() {
     // 使用TemplatePortal把一般的TemplateRef包裝起來
     this.currentPortal = new TemplatePortal(this.template3, this.viewContainerRef);
+
+  changePortal4() {
+    this.currentPortal = new ComponentPortal(Portal4Component);
   }
 }
