@@ -15,6 +15,7 @@ import { EmailListComponent } from './inbox/email-list/email-list.component';
 import { SurveyInputDirective } from './survey/survey-input.directive';
 import { BidiTestComponent } from './main/bidi-test/bidi-test.component';
 import { CdkObserveContentDemoComponent } from './main/cdk-observe-content-demo/cdk-observe-content-demo.component';
+import { Portal4Component } from './main/portal4/portal4.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, DashboardRoutingModule, SharedMaterialModule],
@@ -30,9 +31,10 @@ import { CdkObserveContentDemoComponent } from './main/cdk-observe-content-demo/
     EmailListComponent,
     SurveyInputDirective,
     BidiTestComponent,
-    CdkObserveContentDemoComponent
+    CdkObserveContentDemoComponent,
+    Portal4Component
   ],
   exports: [DashboardComponent],
-  entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent]
+  entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, Portal4Component]
 })
 export class DashboardModule {}

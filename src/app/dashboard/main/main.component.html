@@ -1,3 +1,6 @@
+<mat-form-field>
+  <input matInput type="input" [(ngModel)]="name" />
+</mat-form-field>
 <div class="portal-demo">
   <div class="tabs">
     <button mat-button (click)="changePortal1()">功能1</button>
@@ -20,8 +23,8 @@
   功能2：我放在一般的HTML Element內，加上cdkPortal後變成了一個TemplatePortal
 </p>
 
-<ng-template #template>
-  功能3：我放在ng-template內，但不是TemplatePortal，要用我要記得先包裝一下
+<ng-template #template let-nameInTemplate="nameInObject">
+    Hi，{{ nameInTemplate }}，功能3：我放在ng-template內，但不是TemplatePortal，要用我要記得先包裝一下
 </ng-template>
 
 <app-cdk-observe-content-demo>

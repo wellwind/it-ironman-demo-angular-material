@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   @ViewChild(MatRipple) ripple: MatRipple;
   @ViewChildren(CdkPortal) templatPortals: QueryList<CdkPortal>;
   @ViewChild('template') template3: TemplateRef<any>;
+  name = 'wellwind';
   currentPortal: Portal<any>;
   displayFocusTrap = false;
   displayContent = 999;
@@ -53,7 +54,8 @@ export class MainComponent implements OnInit {
 
   changePortal3() {
     // 使用TemplatePortal把一般的TemplateRef包裝起來
-    this.currentPortal = new TemplatePortal(this.template3, this.viewContainerRef);
+    this.currentPortal = new TemplatePortal(this.template3, this.viewContainerRef, { nameInObject: this.name});
+  }
 
   changePortal4() {
     this.currentPortal = new ComponentPortal(Portal4Component);
