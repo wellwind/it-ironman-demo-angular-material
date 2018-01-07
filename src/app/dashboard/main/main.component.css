@@ -9,3 +9,13 @@
 button {
   margin-bottom: 5px;
 }
+
+.portal-demo {
+  width: 100%;
+  margin: 5px;
+  margin-bottom: 50px;
+}
+
+.portal-demo .tabs {
+  border-bottom: 1px solid black;
+}
