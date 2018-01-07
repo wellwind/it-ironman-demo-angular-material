@@ -13,9 +13,9 @@
   </div>
 </div>
 
-<ng-template cdkPortal>
+<ng-template cdkPortal  let-nameInTemplate="nameInObject">
   <p>
-    功能1：我放在ng-template + cdkPortal = TemplatePortal裡面
+      Hi，{{ nameInTemplate }}，功能1：我放在ng-template + cdkPortal = TemplatePortal裡面
   </p>
 </ng-template>
 
@@ -24,7 +24,7 @@
 </p>
 
 <ng-template #template let-nameInTemplate="nameInObject">
-    Hi，{{ nameInTemplate }}，功能3：我放在ng-template內，但不是TemplatePortal，要用我要記得先包裝一下
+  Hi，{{ nameInTemplate }}，功能3：我放在ng-template內，但不是TemplatePortal，要用我要記得先包裝一下
 </ng-template>
 
 <app-cdk-observe-content-demo>

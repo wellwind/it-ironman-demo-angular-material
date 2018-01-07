@@ -1,8 +1,18 @@
-import { AfterViewChecked, Component, OnInit, ViewChild, ViewChildren, QueryList, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  TemplateRef,
+  ViewContainerRef,
+  Injector
+} from '@angular/core';
 import { MatIconRegistry, MatRipple } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Portal, CdkPortal, TemplatePortal, ComponentPortal } from '@angular/cdk/portal';
-import { Portal4Component } from './portal4/portal4.component';
+import { Portal, CdkPortal, TemplatePortal, ComponentPortal, PortalInjector } from '@angular/cdk/portal';
+import { Portal4Component, PORTAL4_INJECT_DATA } from './portal4/portal4.component';
 
 @Component({
   selector: 'app-main',
@@ -18,7 +28,12 @@ export class MainComponent implements OnInit {
   displayFocusTrap = false;
   displayContent = 999;
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer, private viewContainerRef: ViewContainerRef) {}
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+    private viewContainerRef: ViewContainerRef,
+    private injector: Injector
+  ) {}
 
   ngOnInit() {
     this.matIconRegistry.addSvgIconInNamespace(
@@ -45,6 +60,7 @@ export class MainComponent implements OnInit {
   }
 
   changePortal1() {
+    this.templatPortals.first.context = { nameInObject: this.name };
     this.currentPortal = this.templatPortals.first;
   }
 
@@ -54,10 +70,18 @@ export class MainComponent implements OnInit {
 
   changePortal3() {
     // 使用TemplatePortal把一般的TemplateRef包裝起來
-    this.currentPortal = new TemplatePortal(this.template3, this.viewContainerRef, { nameInObject: this.name});
+    this.currentPortal = new TemplatePortal(this.template3, this.viewContainerRef, { nameInObject: this.name });
   }
 
   changePortal4() {
-    this.currentPortal = new ComponentPortal(Portal4Component);
+    this.currentPortal = new ComponentPortal(Portal4Component, undefined, this._createInjector());
+  }
+
+  private _createInjector(): PortalInjector {
+    const injectionTokens = new WeakMap();
+
+    injectionTokens.set(PORTAL4_INJECT_DATA, { nameInObject: this.name });
+
+    return new PortalInjector(this.injector, injectionTokens);
   }
 }
