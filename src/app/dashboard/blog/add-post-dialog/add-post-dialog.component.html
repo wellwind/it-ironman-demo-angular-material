@@ -3,13 +3,24 @@
 </h2>
 
 <mat-dialog-content class="post-form">
+  <button mat-button (click)="titleTooltip.show()">打開提示</button>
+  <button mat-button (click)="titleTooltip.hide()">關閉提示</button>
   <mat-form-field>
-    <input matInput placeholder="標題" [(ngModel)]="title" />
+    <input matInput placeholder="標題" [(ngModel)]="title" #titleTooltip="matTooltip" matTooltip="替你的文章下一個漂亮的標題吧！" matTooltipPosition="right" matTooltipShowDelay="500" matTooltipHideDelay="500" />
   </mat-form-field>
   <mat-form-field>
     <textarea matInput placeholder="文章內容" rows="3"></textarea>
   </mat-form-field>
-
+  <mat-form-field>
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of tags" (remove)="removeTag(tag)">
+        {{ tag }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <input placeholder="文章標籤" [matChipInputFor]="chipList" matChipInputAddOnBlur="true" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="addTag($event)" />
+  </mat-form-field>
   <p>條款01</p>
   <p>條款02</p>
   <p>條款03</p>
