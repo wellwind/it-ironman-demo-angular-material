@@ -30,6 +30,7 @@ export class InboxComponent implements OnInit {
 
     const config = new OverlayConfig({
       hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
       positionStrategy: strategy
     });
     this.overlayRef = this.overlay.create(config);
