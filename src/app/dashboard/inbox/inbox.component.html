@@ -64,6 +64,7 @@
   <section class="main">
     <button mat-button (click)="tabIndex = tabIndex - 1">上一頁</button>
     <button mat-button (click)="tabIndex = tabIndex + 1">下一頁</button>
+    <button mat-button (click)="displayConnectedMenu()" #originButton>顯示選單</button>
     <p>目前的selectedIndex: {{ tabIndex }}</p>
     <mat-tab-group mat-stretch-tabs backgroundColor="primary" color="accent" [(selectedIndex)]="tabIndex" (focusChange)="tabFocusChange($event)"
       (selectedIndexChange)="tabSelectedIndexChange($event)" (selectedTabChange)="tabSelectedTabChange($event)">
