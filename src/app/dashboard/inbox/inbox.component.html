@@ -96,3 +96,16 @@
     </mat-tab-group>
   </section>
 </div>
+
+<button mat-fab color="accent" class="float-menu" (click)="displayMenu()" #originFab>
+  <mat-icon>add</mat-icon>
+</button>
+
+<ng-template #overlayMenuList>
+  <div class="fab-menu-panel">
+    <mat-nav-list>
+      <a mat-list-item>新增信件</a>
+      <a mat-list-item>管理聯絡人</a>
+    </mat-nav-list>
+  </div>
+</ng-template>

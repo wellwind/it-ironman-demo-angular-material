@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef, ElementRef } from '@angular/core';
+import { MatTabChangeEvent, MatButton } from '@angular/material';
+import { Overlay } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
+import { OverlayRef } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-inbox',
@@ -7,10 +10,29 @@ import { MatTabChangeEvent } from '@angular/material';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
+  @ViewChild('overlayMenuList') overlayMenuList: TemplateRef<any>;
+  @ViewChild('originFab') originFab: MatButton;
+  overlayRef: OverlayRef;
   tabIndex = 0;
-  constructor() {}
 
-  ngOnInit() {}
+  constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) {}
+
+  ngOnInit() {
+    const strategy = this.overlay
+      .position()
+      .connectedTo(this.originFab._elementRef, { originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' });
+    this.overlayRef = this.overlay.create({
+      positionStrategy: strategy
+    });
+  }
+
+  displayMenu() {
+    if (this.overlayRef && this.overlayRef.hasAttached()) {
+      this.overlayRef.detach();
+    } else {
+      this.overlayRef.attach(new TemplatePortal(this.overlayMenuList, this.viewContainerRef));
+    }
+  }
 
   tabFocusChange($event: MatTabChangeEvent) {
     console.log(`focus變更，index：${$event.index}`);
