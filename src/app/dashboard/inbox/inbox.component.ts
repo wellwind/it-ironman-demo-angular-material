@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef, ElementRef } from '@angular/core';
 import { MatTabChangeEvent, MatButton } from '@angular/material';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 import { OverlayRef } from '@angular/cdk/overlay';
 
@@ -20,9 +20,22 @@ export class InboxComponent implements OnInit {
   ngOnInit() {
     const strategy = this.overlay
       .position()
-      .connectedTo(this.originFab._elementRef, { originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' });
-    this.overlayRef = this.overlay.create({
+      // .connectedTo(this.originFab._elementRef, { originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' });
+      .global()
+      .width('500px')
+      .height('100px')
+      .centerHorizontally()
+      .centerVertically();
+
+
+    const config = new OverlayConfig({
+      hasBackdrop: true,
       positionStrategy: strategy
+    });
+    this.overlayRef = this.overlay.create(config);
+
+    this.overlayRef.backdropClick().subscribe(() => {
+      this.overlayRef.detach();
     });
   }
 
