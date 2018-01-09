@@ -1,67 +1,96 @@
 <div class="container">
   <section class="aside">
     <mat-accordion multi="false" displayMode="flat">
-    <mat-expansion-panel hideToggle="true" expanded="true">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>inbox</mat-icon>
-          收件夾
-        </mat-panel-title>
-        <mat-panel-description>
-          3 封未讀
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+      <mat-expansion-panel hideToggle="true" expanded="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>inbox</mat-icon>
+            收件夾
+          </mat-panel-title>
+          <mat-panel-description>
+            3 封未讀
+          </mat-panel-description>
+        </mat-expansion-panel-header>
 
-      <mat-nav-list>
-        <mat-list-item>
-          <mat-icon>folder</mat-icon>
-          Angular
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon>folder</mat-icon>
-          JavaSCript
-        </mat-list-item>
-        <mat-list-item>
-          <mat-icon>folder</mat-icon>
-          HTML
-        </mat-list-item>
-      </mat-nav-list>
-    </mat-expansion-panel>
+        <mat-nav-list>
+          <mat-list-item>
+            <mat-icon>folder</mat-icon>
+            Angular
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>folder</mat-icon>
+            JavaSCript
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>folder</mat-icon>
+            HTML
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>person</mat-icon>
-          聯絡人列表
-        </mat-panel-title>
-        <mat-panel-description>
-          2 人在線上
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-action-row>
-        <button mat-button color="primary">管理我的聯絡人</button>
-      </mat-action-row>
-      <mat-nav-list>
-        <mat-list-item>
-          <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Lin_Chi-Ling_%28cropped%29.jpg" />
-          <p matLine>志玲</p>
-          <button mat-icon-button>
-            <mat-icon>email</mat-icon>
-          </button>
-        </mat-list-item>
-        <mat-list-item>
-          <button mat-icon-button>
-            <mat-icon>email</mat-icon>
-          </button>
-          <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/2008TIBE_Day4_Hall1_Cit%C3%A9Group_TheyKissAgain_SigningEvent_Ariel_Yi-cheng_Lin.jpg/440px-2008TIBE_Day4_Hall1_Cit%C3%A9Group_TheyKissAgain_SigningEvent_Ariel_Yi-cheng_Lin.jpg"
-          />
-          <p matLine>依晨</p>
-        </mat-list-item>
-      </mat-nav-list>
-    </mat-expansion-panel>
-  </mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>person</mat-icon>
+            聯絡人列表
+          </mat-panel-title>
+          <mat-panel-description>
+            2 人在線上
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-action-row>
+          <button mat-button color="primary">管理我的聯絡人</button>
+        </mat-action-row>
+        <mat-nav-list>
+          <mat-list-item>
+            <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Lin_Chi-Ling_%28cropped%29.jpg" />
+            <p matLine>志玲</p>
+            <button mat-icon-button>
+              <mat-icon>email</mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-icon-button>
+              <mat-icon>email</mat-icon>
+            </button>
+            <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/2008TIBE_Day4_Hall1_Cit%C3%A9Group_TheyKissAgain_SigningEvent_Ariel_Yi-cheng_Lin.jpg/440px-2008TIBE_Day4_Hall1_Cit%C3%A9Group_TheyKissAgain_SigningEvent_Ariel_Yi-cheng_Lin.jpg"
+            />
+            <p matLine>依晨</p>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
   </section>
   <section class="main">
-    Main
+    <button mat-button (click)="tabIndex = tabIndex - 1">上一頁</button>
+    <button mat-button (click)="tabIndex = tabIndex + 1">下一頁</button>
+    <p>目前的selectedIndex: {{ tabIndex }}</p>
+    <mat-tab-group mat-stretch-tabs backgroundColor="primary" color="accent" [(selectedIndex)]="tabIndex" (focusChange)="tabFocusChange($event)" (selectedIndexChange)="tabSelectedIndexChange($event)"
+      (selectedTabChange)="tabSelectedTabChange($event)">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>inbox</mat-icon>
+          郵件列表
+        </ng-template>
+        郵件列表清單
+      </mat-tab>
+      <mat-tab disabled="true">
+        <ng-template mat-tab-label>
+          <mat-icon>settings</mat-icon>
+          系統設定
+        </ng-template>
+        系統設定表單
+      </mat-tab>
+      <mat-tab label="其他">
+        其他畫面
+      </mat-tab>
+      <mat-tab label="其他2"></mat-tab>
+      <mat-tab label="其他3"></mat-tab>
+      <mat-tab label="其他4"></mat-tab>
+      <mat-tab label="其他5"></mat-tab>
+      <mat-tab label="其他6"></mat-tab>
+      <mat-tab label="其他7"></mat-tab>
+      <mat-tab label="其他8"></mat-tab>
+    </mat-tab-group>
   </section>
 </div>
