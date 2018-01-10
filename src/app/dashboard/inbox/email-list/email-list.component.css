@@ -1,0 +1,13 @@
+.mat-column-user {
+  max-width: 100px;
+}
+
+.mat-header-cell.mat-column-user {
+  color: red;
+}
+
+.mat-cell.mat-column-user {
+  font-weight: bold;
+  text-decoration: underline dashed #000;
+  cursor: pointer;
+}

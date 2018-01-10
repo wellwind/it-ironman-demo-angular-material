@@ -1,0 +1,28 @@
+<mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]">
+</mat-paginator>
+
+<mat-table [dataSource]="emailsDataSource" matSort #sortTable="matSort" (matSortChange)="changeSort($event)">
+  <ng-container matColumnDef="user">
+    <mat-header-cell *matHeaderCellDef>寄件人</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.user.login }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef>標題</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="created_at">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>日期</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.created_at }}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="management">
+    <mat-header-cell *matHeaderCellDef>
+      <u>管理</u>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" (click)="reply(row)">回覆</button>
+      <button mat-button color="warn" (click)="delete(row)">刪除</button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="['user', 'title', 'created_at', 'management']"></mat-header-row>
+  <mat-row *matRowDef="let emailRow; columns: ['user', 'title', 'created_at', 'management']"></mat-row>
+</mat-table>
