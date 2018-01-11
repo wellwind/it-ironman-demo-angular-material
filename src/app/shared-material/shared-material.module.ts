@@ -43,6 +43,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
 import { PortalModule } from '@angular/cdk/portal';
+import { PlatformModule } from '@angular/cdk/platform';
 
 export const TW_FORMATS = {
   parse: {
@@ -96,7 +97,8 @@ export const TW_FORMATS = {
     LayoutModule,
     ObserversModule,
     ScrollDispatchModule,
-    PortalModule
+    PortalModule,
+    PlatformModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'zh-TW' }, { provide: MAT_DATE_FORMATS, useValue: TW_FORMATS }]
 })
