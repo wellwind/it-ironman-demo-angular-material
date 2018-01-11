@@ -1,6 +1,8 @@
 <mat-paginator #paginator [length]="totalCount" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 15]">
 </mat-paginator>
-
+<mat-form-field>
+  <input matInput #filter placeholder="搜尋">
+</mat-form-field>
 <mat-table [dataSource]="emailsDataSource" matSort #sortTable="matSort" (matSortChange)="changeSort($event)">
   <ng-container matColumnDef="user">
     <mat-header-cell *matHeaderCellDef>寄件人</mat-header-cell>
@@ -11,7 +13,7 @@
     <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="created_at">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>日期</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header arrowPosition="before" disableClear="true" start="desc">日期</mat-header-cell>
     <mat-cell *matCellDef="let row">{{ row.created_at }}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="management">

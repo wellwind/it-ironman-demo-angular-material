@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort, MatPaginatorIntl } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/fromEvent';
 
 @Component({
   selector: 'app-email-list',
@@ -10,12 +14,14 @@ import { MatTableDataSource, MatPaginator, PageEvent, MatSort, Sort } from '@ang
 export class EmailListComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild('sortTable') sortTable: MatSort;
+  @ViewChild('filter') filter: ElementRef;
 
   currentPage: PageEvent;
   currentSort: Sort;
+  currentFilterData: string;
   emailsDataSource = new MatTableDataSource<any>();
   totalCount: number;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private matPaginatorIntl: MatPaginatorIntl) {}
 
   ngOnInit() {
     this.currentPage = {
@@ -34,6 +40,38 @@ export class EmailListComponent implements OnInit {
       this.currentPage = page;
       this.getIssuees();
     });
+
+    Observable.fromEvent(this.filter.nativeElement, 'keyup')
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .subscribe(() => {
+        // 準備要提供給API的filter資料
+        this.currentFilterData = (this.filter.nativeElement as HTMLInputElement).value;
+        this.getIssuees();
+        // 後端篩選就不需要指定filter了
+        // this.emailsDataSource.filter = (this.filter.nativeElement as HTMLInputElement).value;
+      });
+
+    // 後端篩選就用不到filterPredicate了
+    // this.emailsDataSource.filterPredicate = (data: any, filter: string): boolean => {
+    //   return data.title.indexOf(filter) !== -1;
+    // };
+
+    this.matPaginatorIntl.getRangeLabel = (page: number, pageSize: number, length: number): string => {
+      if (length === 0 || pageSize === 0) {
+        return `第 0 筆、共 ${length} 筆`;
+      }
+
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+
+      return `第 ${startIndex + 1} - ${endIndex} 筆、共 ${length} 筆`;
+    };
+
+    this.matPaginatorIntl.itemsPerPageLabel = '每頁筆數：';
+    this.matPaginatorIntl.nextPageLabel = '下一頁';
+    this.matPaginatorIntl.previousPageLabel = '上一頁';
   }
 
   changeSort(sortInfo: Sort) {
@@ -48,18 +86,19 @@ export class EmailListComponent implements OnInit {
     const baseUrl = 'https://api.github.com/search/issues?q=repo:angular/material2';
     let targetUrl = `${baseUrl}&page=${this.currentPage.pageIndex + 1}&per_page=${this.currentPage.pageSize}`;
     if (this.currentSort.direction) {
-      targetUrl = `${targetUrl}&&sort=${this.currentSort.active}&order=${this.currentSort.direction}`;
+      targetUrl = `${targetUrl}&sort=${this.currentSort.active}&order=${this.currentSort.direction}`;
     }
-    this.httpClient
-      .get<any>(targetUrl)
-      .subscribe(data => {
-        this.totalCount = data.total_count;
-        this.emailsDataSource.data = data.items;
-        // 從後端進行排序時，不用指定sort
-        // this.emailsDataSource.sort = this.sortTable;
-        // 從後端取得資料時，就不用指定data srouce的paginator了
-        // this.emailsDataSource.paginator = this.paginator;
-      });
+    if (this.currentFilterData) {
+      targetUrl = `${targetUrl}&q=${this.currentFilterData}+in:title`;
+    }
+    this.httpClient.get<any>(targetUrl).subscribe(data => {
+      this.totalCount = data.total_count;
+      this.emailsDataSource.data = data.items;
+      // 從後端進行排序時，不用指定sort
+      // this.emailsDataSource.sort = this.sortTable;
+      // 從後端取得資料時，就不用指定data srouce的paginator了
+      // this.emailsDataSource.paginator = this.paginator;
+    });
   }
 
   reply(emailRow) {

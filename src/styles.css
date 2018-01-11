@@ -63,3 +63,6 @@ mat-card:focus {
   border-radius: 5px;
 }
 
+.mat-sort-header-position-before {
+  justify-content: flex-end;
+}
