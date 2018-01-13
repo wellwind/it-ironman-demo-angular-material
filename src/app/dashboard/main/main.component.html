@@ -156,13 +156,25 @@
 
 <h2>漣漪效果(mat-ripple)</h2>
 
-<div class="demo-ripple-container" mat-ripple
-[matRippleCentered]="false"
-[matRippleDisabled]="false"
-[matRippleUnbounded]="false"
-[matRippleRadius]="10"
-[matRippleColor]="'pink'"
-[matRippleSpeedFactor]="0.5"></div>
+<div class="demo-ripple-container" mat-ripple [matRippleCentered]="false" [matRippleDisabled]="false" [matRippleUnbounded]="false"
+  [matRippleRadius]="10" [matRippleColor]="'pink'" [matRippleSpeedFactor]="0.5"></div>
 
 <button mat-raised-button (click)="triggerRipple()">觸發漣漪效果</button>
 <button mat-raised-button (click)="clearRipple()">清除漣漪效果</button>
+
+<h2>FocusTrap</h2>
+<button (click)="displayFocusTrap = !displayFocusTrap">顯示輸入項</button>
+<input value="cdkTrapFocus外的Input">
+<div cdkTrapFocus *ngIf="displayFocusTrap" cdkTrapFocusAutoCapture="true">
+  <input value="1" cdkFocusInitial>
+  <input value="2" cdkFocusRegionStart>
+  <input value="3">
+  <input value="4" cdkFocusRegionEnd>
+</div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
