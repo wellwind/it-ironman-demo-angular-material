@@ -8,6 +8,9 @@
   <!-- 在這之後的都會被推到右邊去 -->
   <span class="toolbar-seprator"></span>
 
+  <button mat-button *ngIf="bidiMode === 'ltr'" (click)="bidiMode = 'rtl'">LTR</button>
+  <button mat-button *ngIf="bidiMode === 'rtl'" (click)="bidiMode = 'ltr'">RTL</button>
+
   <button mat-icon-button [matMenuTriggerFor]="messageMenu" #menuTrigger="matMenuTrigger">
     <mat-icon>message</mat-icon>
   </button>
@@ -91,7 +94,7 @@
     <div>我是右邊選單</div>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content [dir]="bidiMode" (dirChange)="logDirChange($event)">
     <!-- 這些練習用的code先註解起來 -->
     <!-- <div>
       <button mat-raised-button (click)="menuTrigger.toggleMenu()">開啟訊息設定</button>
@@ -158,6 +161,7 @@
     <mat-toolbar color="primary">這是primary的toolbar</mat-toolbar>
     <mat-toolbar color="accent">這是accent的toolbar</mat-toolbar>
     <mat-toolbar color="warn">這是warn的toolbar</mat-toolbar> -->
+    <app-bidi-test></app-bidi-test>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

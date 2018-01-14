@@ -17,6 +17,7 @@ import { SurveyInputDirective } from './survey-input.directive';
 import { FocusKeyManager } from '@angular/cdk/a11y';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { UP_ARROW, DOWN_ARROW } from '@angular/cdk/keycodes';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
@@ -60,7 +61,7 @@ export class SurveyComponent implements OnInit, AfterViewInit {
   nestInterestList: any[];
 
   indeterminateSelectedPayFor: boolean;
-
+  isHandeset$: Observable<boolean>;
   @HostListener('keydown', ['$event'])
   keydown($event: KeyboardEvent) {
     // 監聽鍵盤事件並依照案件設定按鈕focus狀態
@@ -87,7 +88,7 @@ export class SurveyComponent implements OnInit, AfterViewInit {
     return `rgb(${this.selectedColorRed}, ${this.selectedColorGreen}, ${this.selectedColorBlue})`;
   }
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private breakpointObserver: BreakpointObserver) {
     this.surveyForm = new FormGroup({
       basicQuestions: new FormGroup({
         name: new FormControl('', Validators.required),
@@ -188,6 +189,8 @@ export class SurveyComponent implements OnInit, AfterViewInit {
         ]
       }
     ];
+
+    this.isHandeset$ = this.breakpointObserver.observe(Breakpoints.Handset).map(match => match.matches);
 
     this._setSelectAllState();
   }

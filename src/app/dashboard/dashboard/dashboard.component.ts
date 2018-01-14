@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
+import { Direction } from '@angular/cdk/bidi';
+import { Observable } from 'rxjs/Observable';
+import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,25 @@ import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  bidiMode = 'ltr';
 
-  ngOnInit() {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  ngOnInit() {
+    // const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 599px)');
+    // console.log(`小螢幕(600px以下)？${isSmallScreen}`);
+
+    this.breakpointObserver.observe('(orientation: portrait)').subscribe(result => {
+      console.log(`portrait: ${result.matches}`);
+    });
+    this.breakpointObserver.observe('(orientation: landscape)').subscribe(result => {
+      console.log(`landscape: ${result.matches}`);
+    });
+
+    this.breakpointObserver.observe([Breakpoints.HandsetLandscape, Breakpoints.HandsetPortrait]).subscribe(result => {
+      console.log(`Handset: ${result.matches}`);
+    });
+  }
 
   toggleSideNav(sideNav: MatSidenav) {
     sideNav.toggle().then((result: any) => {
@@ -24,5 +43,9 @@ export class DashboardComponent implements OnInit {
 
   closed() {
     console.log('芝麻關門');
+  }
+
+  logDirChange($event: Direction) {
+    console.log(`dir被改變了 => ${$event}`);
   }
 }
