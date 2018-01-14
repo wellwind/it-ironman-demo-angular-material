@@ -12,6 +12,7 @@ import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 })
 export class DashboardComponent implements OnInit {
   bidiMode = 'ltr';
+  theme = 'custom-theme-1';
 
   constructor(private breakpointObserver: BreakpointObserver, private scrollDispatcher: ScrollDispatcher) {}
 
@@ -37,6 +38,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  toggleTheme() {
+    this.theme = this.theme === 'custom-theme-1' ? 'custom-theme-2' : 'custom-theme-1';
+  }
   toggleSideNav(sideNav: MatSidenav) {
     sideNav.toggle().then((result: any) => {
       console.log(result);
