@@ -4,6 +4,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { Observable } from 'rxjs/Observable';
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
 import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,10 @@ export class DashboardComponent implements OnInit {
   bidiMode = 'ltr';
   theme = 'custom-theme-1';
 
-  constructor(private breakpointObserver: BreakpointObserver, private scrollDispatcher: ScrollDispatcher) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private scrollDispatcher: ScrollDispatcher,
+    private overlayContainer: OverlayContainer) { }
 
   ngOnInit() {
     // const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 599px)');
@@ -36,10 +40,15 @@ export class DashboardComponent implements OnInit {
       console.log('發生scroll了，來源為：');
       console.log(scrollable.getElementRef());
     });
+
+    this.overlayContainer.getContainerElement().classList.add(this.theme);
   }
 
   toggleTheme() {
+    const originalTheme = this.theme;
     this.theme = this.theme === 'custom-theme-1' ? 'custom-theme-2' : 'custom-theme-1';
+    this.overlayContainer.getContainerElement().classList.remove(originalTheme);
+    this.overlayContainer.getContainerElement().classList.add(this.theme);
   }
   toggleSideNav(sideNav: MatSidenav) {
     sideNav.toggle().then((result: any) => {
