@@ -94,7 +94,7 @@
     <div>我是右邊選單</div>
   </mat-sidenav>
 
-  <mat-sidenav-content [dir]="bidiMode" (dirChange)="logDirChange($event)">
+  <mat-sidenav-content [dir]="bidiMode" (dirChange)="logDirChange($event)" cdkScrollable>
     <!-- 這些練習用的code先註解起來 -->
     <!-- <div>
       <button mat-raised-button (click)="menuTrigger.toggleMenu()">開啟訊息設定</button>

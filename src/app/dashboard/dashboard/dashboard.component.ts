@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSidenav, MatDrawerToggleResult } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav, MatDrawerToggleResult, MatSidenavContent } from '@angular/material';
 import { Direction } from '@angular/cdk/bidi';
 import { Observable } from 'rxjs/Observable';
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
+import { CdkScrollable, ScrollDispatcher } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +13,7 @@ import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/l
 export class DashboardComponent implements OnInit {
   bidiMode = 'ltr';
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private scrollDispatcher: ScrollDispatcher) {}
 
   ngOnInit() {
     // const isSmallScreen = this.breakpointObserver.isMatched('(max-width: 599px)');
@@ -27,6 +28,12 @@ export class DashboardComponent implements OnInit {
 
     this.breakpointObserver.observe([Breakpoints.HandsetLandscape, Breakpoints.HandsetPortrait]).subscribe(result => {
       console.log(`Handset: ${result.matches}`);
+    });
+
+    console.log(this.scrollDispatcher.scrollContainers);
+    this.scrollDispatcher.scrolled(1000).subscribe((scrollable: CdkScrollable) => {
+      console.log('發生scroll了，來源為：');
+      console.log(scrollable.getElementRef());
     });
   }
 

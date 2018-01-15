@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class MainComponent implements OnInit {
   @ViewChild(MatRipple) ripple: MatRipple;
   displayFocusTrap = false;
+  displayContent = 999;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {}
 

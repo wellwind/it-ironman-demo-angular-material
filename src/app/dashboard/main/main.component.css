@@ -5,3 +5,7 @@
   transition: all 200ms linear;
   border: 1px solid black;
 }
+
+button {
+  margin-bottom: 5px;
+}
