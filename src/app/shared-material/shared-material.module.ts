@@ -42,6 +42,7 @@ import { BidiModule } from '@angular/cdk/bidi';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
 import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { PortalModule } from '@angular/cdk/portal';
 
 export const TW_FORMATS = {
   parse: {
@@ -94,7 +95,8 @@ export const TW_FORMATS = {
     BidiModule,
     LayoutModule,
     ObserversModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    PortalModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'zh-TW' }, { provide: MAT_DATE_FORMATS, useValue: TW_FORMATS }]
 })

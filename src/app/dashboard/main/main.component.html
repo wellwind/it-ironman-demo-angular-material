@@ -1,3 +1,32 @@
+<mat-form-field>
+  <input matInput type="input" [(ngModel)]="name" />
+</mat-form-field>
+<div class="portal-demo">
+  <div class="tabs">
+    <button mat-button (click)="changePortal1()">功能1</button>
+    <button mat-button (click)="changePortal2()">功能2</button>
+    <button mat-button (click)="changePortal3()">功能3</button>
+    <button mat-button (click)="changePortal4()">功能4</button>
+  </div>
+  <div class="tab-content">
+    <div [cdkPortalOutlet]="currentPortal"></div>
+  </div>
+</div>
+
+<ng-template cdkPortal let-nameInTemplate="nameInObject">
+  <p>
+    Hi，{{ nameInTemplate }}，功能1：我放在ng-template + cdkPortal = TemplatePortal裡面
+  </p>
+</ng-template>
+
+<p *cdkPortal>
+  功能2：我放在一般的HTML Element內，加上cdkPortal後變成了一個TemplatePortal
+</p>
+
+<ng-template #template let-nameInTemplate="nameInObject">
+  Hi，{{ nameInTemplate }}，功能3：我放在ng-template內，但不是TemplatePortal，要用我要記得先包裝一下
+</ng-template>
+
 <app-cdk-observe-content-demo>
   {{ displayContent }}
 </app-cdk-observe-content-demo>
@@ -186,3 +215,8 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+
+<div>
+  <button matButton (click)="createOutletOutOfApp()">使用DomPortalOutlet產生插座</button>
+  <button matButton (click)="addTemplatePortal()">插入內容</button>
+</div>
