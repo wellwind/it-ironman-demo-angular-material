@@ -64,6 +64,7 @@
   <section class="main">
     <button mat-button (click)="tabIndex = tabIndex - 1">上一頁</button>
     <button mat-button (click)="tabIndex = tabIndex + 1">下一頁</button>
+    <button mat-button (click)="displayConnectedMenu()" #originButton>顯示選單</button>
     <p>目前的selectedIndex: {{ tabIndex }}</p>
     <mat-tab-group mat-stretch-tabs backgroundColor="primary" color="accent" [(selectedIndex)]="tabIndex" (focusChange)="tabFocusChange($event)"
       (selectedIndexChange)="tabSelectedIndexChange($event)" (selectedTabChange)="tabSelectedTabChange($event)">
@@ -96,3 +97,16 @@
     </mat-tab-group>
   </section>
 </div>
+
+<button mat-fab color="accent" class="float-menu" (click)="displayMenu()" #originFab>
+  <mat-icon>add</mat-icon>
+</button>
+
+<ng-template #overlayMenuList>
+  <div class="fab-menu-panel">
+    <mat-nav-list>
+      <a mat-list-item>新增信件</a>
+      <a mat-list-item>管理聯絡人</a>
+    </mat-nav-list>
+  </div>
+</ng-template>

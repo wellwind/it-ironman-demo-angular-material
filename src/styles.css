@@ -15,7 +15,7 @@ body {
 .demo-app-sidenav {
   position: absolute;
   padding-top: 64px;
-  height: calc(100vh - 64px);
+  height: 100vh;
 }
 
 .demo-app-sidenav {
@@ -65,4 +65,20 @@ mat-card:focus {
 
 .mat-sort-header-position-before {
   justify-content: flex-end;
+}
+
+.float-menu {
+  position: fixed !important;
+  right: 15px;
+  bottom: 15px;
+  z-index: 2;
+}
+
+.fab-menu-panel {
+  border: 1px solid black;
+  background-color: white;
+}
+
+.fab-menu-panel .mat-nav-list {
+  padding-top: 0px;
 }

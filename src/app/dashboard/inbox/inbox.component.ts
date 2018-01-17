@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material';
+import { Component, OnInit, ViewChild, TemplateRef, ViewContainerRef, ElementRef } from '@angular/core';
+import { MatTabChangeEvent, MatButton } from '@angular/material';
+import { Overlay, OverlayConfig, OverlayRef, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { TemplatePortal } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-inbox',
@@ -7,10 +9,57 @@ import { MatTabChangeEvent } from '@angular/material';
   styleUrls: ['./inbox.component.css']
 })
 export class InboxComponent implements OnInit {
-  tabIndex = 0;
-  constructor() {}
+  @ViewChild('overlayMenuList') overlayMenuList: TemplateRef<any>;
+  @ViewChild('originFab') originFab: MatButton;
+  @ViewChild('originButton') originButton: MatButton;
+  overlayRef: OverlayRef;
 
-  ngOnInit() {}
+  tabIndex = 0;
+
+  constructor(private overlay: Overlay, private viewContainerRef: ViewContainerRef) {}
+
+  ngOnInit() {
+    const strategy = this.overlay
+      .position()
+      // .connectedTo(this.originFab._elementRef, { originX: 'end', originY: 'top' }, { overlayX: 'end', overlayY: 'bottom' })
+      .global()
+      .width('500px')
+      .height('100px')
+      .centerHorizontally()
+      .centerVertically();
+
+    const config = new OverlayConfig({
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      positionStrategy: strategy
+    });
+    this.overlayRef = this.overlay.create(config);
+
+    this.overlayRef.backdropClick().subscribe(() => {
+      this.overlayRef.detach();
+    });
+  }
+
+  displayMenu() {
+    if (this.overlayRef && this.overlayRef.hasAttached()) {
+      this.overlayRef.detach();
+    } else {
+      this.overlayRef.attach(new TemplatePortal(this.overlayMenuList, this.viewContainerRef));
+    }
+  }
+
+  displayConnectedMenu() {
+    const strategy = this.overlay
+      .position()
+      .connectedTo(this.originButton._elementRef, { originX: 'end', originY: 'top' }, { overlayX: 'start', overlayY: 'top' });
+
+    const config = new OverlayConfig({
+      positionStrategy: strategy,
+      scrollStrategy: this.overlay.scrollStrategies.reposition()
+    });
+    const overlayRef = this.overlay.create(config);
+    overlayRef.attach(new TemplatePortal(this.overlayMenuList, this.viewContainerRef));
+  }
 
   tabFocusChange($event: MatTabChangeEvent) {
     console.log(`focus變更，index：${$event.index}`);
