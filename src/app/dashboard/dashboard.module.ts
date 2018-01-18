@@ -16,6 +16,7 @@ import { SurveyInputDirective } from './survey/survey-input.directive';
 import { BidiTestComponent } from './main/bidi-test/bidi-test.component';
 import { CdkObserveContentDemoComponent } from './main/cdk-observe-content-demo/cdk-observe-content-demo.component';
 import { Portal4Component } from './main/portal4/portal4.component';
+import { CoercionDemoBoxComponent } from './main/coercion-demo-box/coercion-demo-box.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule, DashboardRoutingModule, SharedMaterialModule],
@@ -29,10 +30,9 @@ import { Portal4Component } from './main/portal4/portal4.component';
     AfterPostNotifyComponent,
     InboxComponent,
     EmailListComponent,
-    SurveyInputDirective,
-    BidiTestComponent,
     CdkObserveContentDemoComponent,
-    Portal4Component
+    Portal4Component,
+    CoercionDemoBoxComponent
   ],
   exports: [DashboardComponent],
   entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, Portal4Component]

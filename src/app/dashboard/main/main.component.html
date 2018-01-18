@@ -1,3 +1,21 @@
+<div>
+  <p>Is Browser: {{ platform.isBrowser }}</p>
+  <p>Is Android: {{ platform.ANDROID }}</p>
+  <p>Is iOS: {{ platform.IOS }}</p>
+  <p>Is Firefox: {{ platform.FIREFOX }}</p>
+  <p>Is Blink: {{ platform.BLINK }}</p>
+  <p>Is Webkit: {{ platform.WEBKIT }}</p>
+  <p>Is Trident: {{ platform.TRIDENT }}</p>
+  <p>Is Edge: {{ platform.EDGE }}</p>
+</div>
+
+<h2>目前瀏覽器支援的input types</h2>
+<ul>
+    <li *ngFor="let type of supportInputTypes">{{ type }}</li>
+</ul>
+
+<app-coercion-demo-box display="true" height="10" values="a"></app-coercion-demo-box>
+
 <mat-form-field>
   <input matInput type="input" [(ngModel)]="name" />
 </mat-form-field>
