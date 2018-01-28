@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { AfterPostNotifyComponent } from '../after-post-notify/after-post-notify.component';
 
@@ -8,6 +8,8 @@ import { AfterPostNotifyComponent } from '../after-post-notify/after-post-notify
   styleUrls: ['./add-post-confirm-dialog.component.css']
 })
 export class AddPostConfirmDialogComponent implements OnInit {
+  @Output() doConfirm = new EventEmitter<any>();
+
   get title() {
     return this.data.title;
   }
@@ -16,6 +18,7 @@ export class AddPostConfirmDialogComponent implements OnInit {
   ngOnInit() {}
 
   confirm() {
+    this.doConfirm.emit();
     this.dialog.closeAll();
     this.snackBar.openFromComponent(AfterPostNotifyComponent, {
       data: { title: this.title },

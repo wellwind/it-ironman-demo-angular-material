@@ -16,10 +16,13 @@ export class AddPostDialogComponent implements OnInit {
   ngOnInit() {}
 
   doPost() {
-    this.dialog.open(AddPostConfirmDialogComponent, {
+    const confirmDialogRef = this.dialog.open(AddPostConfirmDialogComponent, {
       data: {
         title: this.title
       }
+    });
+    confirmDialogRef.componentInstance.doConfirm.subscribe(() => {
+      console.log('開啟的dialog按下確認按鈕了');
     });
   }
 
