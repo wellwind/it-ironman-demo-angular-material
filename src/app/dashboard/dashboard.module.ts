@@ -32,9 +32,11 @@ import { CoercionDemoBoxComponent } from './main/coercion-demo-box/coercion-demo
     EmailListComponent,
     CdkObserveContentDemoComponent,
     Portal4Component,
-    CoercionDemoBoxComponent
+    CoercionDemoBoxComponent,
+    SurveyInputDirective,
+    BidiTestComponent
   ],
   exports: [DashboardComponent],
   entryComponents: [AddPostDialogComponent, AddPostConfirmDialogComponent, AfterPostNotifyComponent, Portal4Component]
 })
-export class DashboardModule {}
+export class DashboardModule { }
