@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSidenav, MatDrawerToggleResult, MatSidenavContent } from '@angular/material';
+import { MatSidenav, MatSidenavContent } from '@angular/material';
 import { Direction } from '@angular/cdk/bidi';
 import { Observable } from 'rxjs/Observable';
 import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
