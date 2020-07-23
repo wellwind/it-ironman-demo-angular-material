@@ -2,6 +2,7 @@ import { FormGroup, FormControl, ValidatorFn, Validators } from '@angular/forms'
 import { Component, OnInit } from '@angular/core';
 import { MatStepperIntl } from '@angular/material';
 
+@Injectable()
 export class TwStepperIntl extends MatStepperIntl {
   optionalLabel = '非必填';
 }
